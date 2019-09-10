@@ -20,6 +20,9 @@ import { Vibration } from '@ionic-native/vibration/ngx';
 import { SmartAudioService } from './services/smart-audio.service';
 import { NativeAudio } from '@ionic-native/native-audio/ngx';
 import { File } from '@ionic-native/file/ngx';
+import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner/ngx';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 
 firebase.initializeApp(environment.firebase);
 
@@ -44,6 +47,9 @@ firebase.initializeApp(environment.firebase);
     SmartAudioService,
     NativeAudio,
     File,
+    QRScanner,
+    LocalNotifications,
+    BarcodeScanner,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

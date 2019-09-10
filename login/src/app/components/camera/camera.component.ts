@@ -3,6 +3,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import * as firebase from 'firebase/app';
 import { File } from "@ionic-native/file/ngx";
 import { Router } from '@angular/router';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 
 @Component({
   selector: 'app-camera',
@@ -14,7 +15,8 @@ export class CameraComponent implements OnInit {
   constructor(
       private camera: Camera, 
       private file: File,
-      private router: Router
+      private router: Router,
+      private localNotifications: LocalNotifications
   ) { }
 
   ngOnInit() {}
@@ -28,41 +30,15 @@ export class CameraComponent implements OnInit {
       saveToPhotoAlbum: true
     }
     try{
-      let cameraInfo = await this.camera.getPicture(options);
+      let cameraInfo = this.camera.getPicture(options);
       let blobInfo = await this.makeFileIntoBlob(cameraInfo);
       let uploadInfo: any = await this.uploadToFirebase(blobInfo);
-
       alert("File Upload Success " + uploadInfo.fileName);
     } 
     catch (e) {
       console.log(e.message);
       this.router.navigate(['/error', { error : e.message }]);
     }
-}
-
-  uploadToFirebase(_imageBlobInfo) {
-    console.log("uploadToFirebase");
-    return new Promise((resolve, reject) => {
-      let fileRef = firebase.storage()
-                        .ref("images/" + _imageBlobInfo.fileName);
-      let uploadTask = fileRef.put(_imageBlobInfo.imgBlob);
-      uploadTask.on(
-        "state_changed",
-        (_snap: any) => {
-          console.log(
-            "progess: " + Math.floor((_snap.bytesTransferred / _snap.totalBytes) * 100)
-          );
-        },
-        _error => {
-          console.log(_error);
-          reject(_error);
-        },
-        () => {
-          // completion...
-          resolve(uploadTask.snapshot);
-        }
-      );
-    });
   }
 
   makeFileIntoBlob(_imagePath) {
@@ -95,6 +71,36 @@ export class CameraComponent implements OnInit {
           });
         })
         .catch(e => reject(e));
+    });
+  }
+
+  uploadToFirebase(_imageBlobInfo) {
+    console.log("uploadToFirebase");
+    return new Promise((resolve, reject) => {
+      let fileRef = firebase.storage()
+                        .ref("images/" + _imageBlobInfo.fileName);
+      let uploadTask = fileRef.put(_imageBlobInfo.imgBlob);
+      uploadTask.on(
+        "state_changed",
+        (_snap: any) => {
+          let percentage = Math.floor((_snap.bytesTransferred / _snap.totalBytes) * 100);
+          console.log("progess: " + percentage);
+            this.localNotifications.schedule({
+              id: 1,
+              text: 'Uploading Image',
+              progressBar: { "value":  percentage}
+            });
+        },
+        _error => {
+          console.log(_error);
+          reject(_error);
+        },
+        () => {
+          // completion...
+          resolve(uploadTask.snapshot);
+          this.localNotifications.cancel(1);
+        }
+      );
     });
   }
 

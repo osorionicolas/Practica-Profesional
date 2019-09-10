@@ -50,11 +50,11 @@ export class LoginPage implements OnInit {
   };
 
   addDefaultUser(){
-    this.defaultUsers.push({"id":1, "email":"admin@admin.com", "password":"1111", "perfil":"admin", "sexo":"femenino"});
-    this.defaultUsers.push({"id":2, "email":"invitado@invitado.com", "password":"2222", "perfil":"invitado", "sexo":"femenino"});
-    this.defaultUsers.push({"id":3, "email":"usuario@usuario.com", "password":"3333", "perfil":"usuario", "sexo":"masculino"});
-    this.defaultUsers.push({"id":4, "email":"anonimo@anonimo.com", "password":"4444", "perfil":"usuario", "sexo":"masculino"});
-    this.defaultUsers.push({"id":5, "email":"tester@tester.com", "password":"5555", "perfil":"tester","sexo": "femenino"});
+    this.defaultUsers.push({"id":1, "email":"admin@admin.com", "password":"111111", "perfil":"admin", "sexo":"femenino"});
+    this.defaultUsers.push({"id":2, "email":"invitado@invitado.com", "password":"222222", "perfil":"invitado", "sexo":"femenino"});
+    this.defaultUsers.push({"id":3, "email":"usuario@usuario.com", "password":"333333", "perfil":"usuario", "sexo":"masculino"});
+    this.defaultUsers.push({"id":4, "email":"anonimo@anonimo.com", "password":"444444", "perfil":"usuario", "sexo":"masculino"});
+    this.defaultUsers.push({"id":5, "email":"tester@tester.com", "password":"555555", "perfil":"tester","sexo": "femenino"});
     this.defaultUsers.push(new User("nosorio@utn.com","nosorio"));
   }
 

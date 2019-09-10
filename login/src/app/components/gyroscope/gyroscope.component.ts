@@ -74,7 +74,7 @@ alarmaActivada: Boolean;
     this.flagLeft = false;
     this.flagRight = false;
     this.flashlight.switchOff();
-    this.smartAudioService.stopInterval('login');
+    //this.smartAudioService.stopInterval('login');
     clearTimeout(this.timeoutVertical);
   }
 
@@ -85,16 +85,16 @@ alarmaActivada: Boolean;
       this.flagRight = true;
       this.flashlight.switchOn();
       this.smartAudioService.play('login');
-      this.smartAudioService.playInterval('login', 500);
+      /*this.smartAudioService.playInterval('login', 500);
       this.timeoutVertical = setTimeout(x => {
-        this.stopVertical(); }, 5000);
+        this.stopVertical(); }, 5000);*/
   }
 
   private stopHorizontal() {
     this.flagLeft = false;
     this.flagRight = false;
     this.vibration.vibrate(0);
-    this.smartAudioService.stopInterval('confirmation');
+    //this.smartAudioService.stopInterval('confirmation');
     clearTimeout(this.timeoutHorizontal);
   }
 
@@ -104,35 +104,38 @@ alarmaActivada: Boolean;
       this.flagLeft = true;
       this.flagRight = true;
       this.vibration.vibrate(5000);
-      this.smartAudioService.playInterval('confirmation', 500);
+      this.smartAudioService.play('confirmation');
+      /*this.smartAudioService.playInterval('confirmation', 500);
       this.timeoutHorizontal = setTimeout(x => {
-        this.stopHorizontal(); }, 5000);
+        this.stopHorizontal(); }, 5000);*/
   }
 
   private stopLeft() {
-    this.smartAudioService.stopInterval('error');
+    //this.smartAudioService.stopInterval('error');
     clearTimeout(this.timeoutLeft);
   }
 
   private startLeft() {
       this.flagLeft = true;
       this.flagRight = false;
-      this.smartAudioService.playInterval('error', 500);
+      this.smartAudioService.play('error');
+      /*this.smartAudioService.playInterval('error', 500);
       this.timeoutLeft = setTimeout(x => {
-        this.stopLeft(); }, 5000);
+        this.stopLeft(); }, 5000);*/
   }
 
   private stopRight() {
-    this.smartAudioService.stopInterval('boop');
+    //this.smartAudioService.stopInterval('boop');
     clearTimeout(this.timeoutRight);
   }
 
   private startRight() {
       this.flagRight = true;
       this.flagLeft = false;
-      this.smartAudioService.playInterval('boop', 500);
+      this.smartAudioService.play('boop');
+      /*this.smartAudioService.playInterval('boop', 500);
       this.timeoutRight = setTimeout(x => {
-        this.stopRight(); }, 5000);
+        this.stopRight(); }, 5000);*/
   }
 
   private processOrientation(event: DeviceOrientationEvent) {

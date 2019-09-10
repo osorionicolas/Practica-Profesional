@@ -10,6 +10,8 @@ import { FlashlightComponent } from '../../components/flashlight/flashlight.comp
 import { CameraComponent } from '../../components/camera/camera.component';
 import { GyroscopeComponent } from '../../components/gyroscope/gyroscope.component';
 import { NavControllerComponent } from 'src/app/components/nav-controller/nav-controller.component';
+import { QrscannerComponent } from 'src/app/components/qrscanner/qrscanner.component';
+import { NotificationsComponent } from 'src/app/components/notifications/notifications.component';
 
 const routes: Routes = [
   {
@@ -25,7 +27,15 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [DashboardPage, FlashlightComponent, CameraComponent, GyroscopeComponent, NavControllerComponent],
+  declarations: [
+    DashboardPage, 
+    FlashlightComponent,
+    CameraComponent, 
+    GyroscopeComponent, 
+    NavControllerComponent, 
+    QrscannerComponent, 
+    NotificationsComponent
+  ],
 
 })
 export class DashboardPageModule {}
