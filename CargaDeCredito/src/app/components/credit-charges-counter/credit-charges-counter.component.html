@@ -1,0 +1,9 @@
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>Credito Disponible</ion-card-title>
+  </ion-card-header>
+  <ion-card-content class="ion-text-center">
+    <ion-text color="dark" *ngIf="(credit | async)?.credit"><h1><b>${{(credit | async)?.credit}}</b></h1></ion-text>
+    <ion-text color="dark" *ngIf="!(credit | async)?.credit"><h1><b>$0</b></h1></ion-text>
+  </ion-card-content>
+</ion-card>

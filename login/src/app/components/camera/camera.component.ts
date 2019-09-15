@@ -30,7 +30,7 @@ export class CameraComponent implements OnInit {
       saveToPhotoAlbum: true
     }
     try{
-      let cameraInfo = this.camera.getPicture(options);
+      let cameraInfo = await this.camera.getPicture(options);
       let blobInfo = await this.makeFileIntoBlob(cameraInfo);
       let uploadInfo: any = await this.uploadToFirebase(blobInfo);
       alert("File Upload Success " + uploadInfo.fileName);
@@ -50,11 +50,9 @@ export class CameraComponent implements OnInit {
         .then(fileEntry => {
           let { name, nativeURL } = fileEntry;
           // get the path..
-          let path = nativeURL
-                      .substring(0, nativeURL.lastIndexOf("/"));
+          let path = nativeURL.substring(0, nativeURL.lastIndexOf("/"));
           fileName = name;
-          // we are provided the name, so now read the file 
-          // into a buffer
+          // we are provided the name, so now read the file into a buffer
           return this.file.readAsArrayBuffer(path, name);
         })
         .then(buffer => {
@@ -63,8 +61,7 @@ export class CameraComponent implements OnInit {
             type: "image/jpeg"
           });
           
-          // pass back blob and the name of the file for saving
-          // into fire base
+          // pass back blob and the name of the file for saving into fire base
           resolve({
             fileName,
             imgBlob
@@ -78,7 +75,7 @@ export class CameraComponent implements OnInit {
     console.log("uploadToFirebase");
     return new Promise((resolve, reject) => {
       let fileRef = firebase.storage()
-                        .ref("images/" + _imageBlobInfo.fileName);
+                            .ref("images/" + _imageBlobInfo.fileName);
       let uploadTask = fileRef.put(_imageBlobInfo.imgBlob);
       uploadTask.on(
         "state_changed",
