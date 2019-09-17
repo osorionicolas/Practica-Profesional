@@ -1,22 +1,22 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GyroscopeComponent } from './gyroscope.component';
+import { SirenComponent } from './siren.component';
 
-describe('GyroscopeComponent', () => {
-  let component: GyroscopeComponent;
-  let fixture: ComponentFixture<GyroscopeComponent>;
+describe('SirenComponent', () => {
+  let component: SirenComponent;
+  let fixture: ComponentFixture<SirenComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GyroscopeComponent ],
+      declarations: [ SirenComponent ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GyroscopeComponent);
+    fixture = TestBed.createComponent(SirenComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
