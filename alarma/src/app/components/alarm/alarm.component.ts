@@ -39,14 +39,25 @@ export class AlarmComponent implements OnInit {
   ngOnInit() {
   }
 
+  changeLinesColor(colorClass:string, toColorClass:string){
+    let lines = Array.from(document.getElementsByClassName(colorClass));
+    for(let line of lines){
+      line.setAttribute("class", toColorClass);
+    }
+  }
+
   activateAlarm() {
     this.alarmaActivada = !this.alarmaActivada;
     this.alarmActivatedEvent.emit(this.alarmaActivada);
     const elistener = this.eventListener;
     if (this.alarmaActivada) {
+      document.getElementsByClassName("roundButton")[0].setAttribute("color","danger");
+      this.changeLinesColor("lineBottom","lineTop");
       window.addEventListener('deviceorientation', elistener, true);
     } 
     else {
+      document.getElementsByClassName("roundButton")[0].setAttribute("color","primary");
+      this.changeLinesColor("lineTop","lineBottom");
       this.flagHorizontal = false;
       this.flagVertical = false;
       this.flagRight = false;
