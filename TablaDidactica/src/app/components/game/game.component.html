@@ -1,19 +1,27 @@
-<ion-row text-center>
-  <ion-col>
-    <div>1 of 3</div>
-  </ion-col>
-  <ion-col>
-    <div>2 of 3</div>
-  </ion-col>
-  <ion-col>
-    <div>3 of 3</div>
-  </ion-col>
-</ion-row>
-<ion-row text-center>
-  <ion-col>
-    <div>1 of 2</div>
-  </ion-col>
-  <ion-col>
-    <div>2 of 2</div>
-  </ion-col>
-</ion-row>
+<div *ngIf="topic=='colors'">
+  <ion-row *ngFor="let item of array">
+    <ion-card color="{{item}}" button="true" (click)="play(item)">
+      <ion-card-content></ion-card-content>
+    </ion-card>
+  </ion-row>
+</div>
+
+<div *ngIf="topic=='animals'">
+  <ion-row *ngFor="let item of array">
+    <ion-card button="true" (click)="play(item)">
+      <ion-card-content>
+          <img src="../../../assets/imagenes/animales/{{item}}.svg">
+        </ion-card-content>
+    </ion-card>
+  </ion-row>
+</div>
+
+<div *ngIf="topic=='numbers'">
+  <ion-row *ngFor="let item of array">
+    <ion-card button="true" (click)="play(item)">
+      <ion-card-content>
+        <img src="../../../assets/imagenes/numeros/{{item}}.svg">
+      </ion-card-content>
+    </ion-card>
+  </ion-row>
+</div>

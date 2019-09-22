@@ -1,12 +1,5 @@
-body, html {
-    background: #ffffff;
-    height: 100%;
-    width: 100%;
-    margin: 0;
-  }
-
 .background-container {
-  min-height: 37em;
+  height: 100%;
   width: 100%;
   display: flex;
   flex: 1;
@@ -107,8 +100,8 @@ body, html {
 
 .sun-rays {
 position: absolute;
-right: 0em;
-bottom: 29em;
+right: -1em;
+bottom: 35em;
 height: 15em;
 width: 15em;
 z-index: -5;
@@ -119,8 +112,8 @@ animation: rays 10s infinite;
 }
 .sun {
     position: absolute;
-    bottom: 31.5em;
-    right: 2.5em;
+    bottom: 37.5em;
+    right: 1.5em;
     height: 10em;
     width: 10em;
     z-index: -5;
@@ -131,7 +124,7 @@ animation: rays 10s infinite;
 
 .cloud.one {
     position: absolute;
-    top: 11em;
+    top: 3em;
     left: 5em;
     z-index: 2;
     animation: moveCloud 35s linear infinite;
@@ -140,7 +133,7 @@ animation: rays 10s infinite;
 .cloud.two {
   position: absolute;
   left: 80em;
-  top: 18em;
+  top: 12em;
   z-index: -2;
 	animation: moveCloud 45s infinite linear;
 	transform: scale(0.4);
