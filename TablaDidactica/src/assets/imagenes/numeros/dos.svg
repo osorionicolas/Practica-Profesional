@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   height="512pt"
+   viewBox="0 0 512 512"
+   width="512pt"
+   version="1.1"
+   id="svg20"
+   sodipodi:docname="dos.svg"
+   inkscape:version="0.92.2 5c3e80d, 2017-08-06">
+  <metadata
+     id="metadata26">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs24" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1440"
+     inkscape:window-height="791"
+     id="namedview22"
+     showgrid="false"
+     inkscape:zoom="0.34570313"
+     inkscape:cx="312.40678"
+     inkscape:cy="328.17175"
+     inkscape:window-x="0"
+     inkscape:window-y="1"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg20" />
+  <path
+     d="M 10.140625,317.30078 V 76.042969 c 0,-36.398438 29.503906,-65.902344 65.902344,-65.902344 H 435.95703 c 36.39844,0 65.90234,29.503906 65.90234,65.902344 V 435.95703 c 0,36.39844 -29.5039,65.90234 -65.90234,65.90234 H 76.042969 c -36.398438,0 -65.902344,-29.5039 -65.902344,-65.90234 v -35.60937"
+     id="path2"
+     inkscape:connector-curvature="0"
+     style="fill:#ffeeaa" />
+  <path
+     d="M 0,76.042969 V 317.30078 c 0,13.01953 20.277344,13.03906 20.277344,0 V 76.042969 c 0,-30.75 25.015625,-55.765625 55.765625,-55.765625 H 435.95703 c 30.75,0 55.76563,25.015625 55.76563,55.765625 V 435.95703 c 0,30.75 -25.01563,55.76563 -55.76563,55.76563 H 76.042969 c -30.75,0 -55.765625,-25.01563 -55.765625,-55.76563 V 400.34766 C 20.277344,387.32812 0,387.3125 0,400.34766 v 35.60937 C 0,477.88672 34.113281,512 76.042969,512 H 435.95703 C 477.88672,512 512,477.88672 512,435.95703 V 76.042969 C 512,34.113281 477.88672,0 435.95703,0 H 76.042969 C 34.113281,0 0,34.113281 0,76.042969 Z m 0,0"
+     id="path6"
+     inkscape:connector-curvature="0" />
+  <path
+     d="m 19.176702,357.93793 c 0,-5.41796 -4.54297,-10.05078 -9.9648399,-10.12109 -5.625,-0.0742 -10.27344,4.53516 -10.27735,10.14453 -0.008,5.59375 4.75,10.22266 10.34375,10.10938 5.3828199,-0.11328 9.8984399,-4.75391 9.8984399,-10.13282 z m 0,0"
+     id="path8"
+     inkscape:connector-curvature="0" />
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:30px;line-height:1.25;font-family:'Serto Jerusalem';-inkscape-font-specification:'Serto Jerusalem Bold';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:12.75;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     x="171.3898"
+     y="340.61017"
+     id="text835"><tspan
+       sodipodi:role="line"
+       id="tspan833"
+       x="171.3898"
+       y="340.61017"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:294.00003052px;font-family:'Serto Jerusalem';-inkscape-font-specification:'Serto Jerusalem Bold';fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:12.75;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">2</tspan></text>
+  <flowRoot
+     xml:space="preserve"
+     id="flowRoot837"
+     style="fill:black;fill-opacity:1;stroke:none;font-family:Seravek;font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;letter-spacing:0px;word-spacing:0px;-inkscape-font-specification:Seravek;font-stretch:normal;font-variant:normal"><flowRegion
+       id="flowRegion839"><rect
+         id="rect841"
+         width="54.960453"
+         height="335.54803"
+         x="775.23163"
+         y="-225.62712" /></flowRegion><flowPara
+       id="flowPara843"></flowPara></flowRoot></svg>

@@ -1,0 +1,7 @@
+{
+  "name": "didactico",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

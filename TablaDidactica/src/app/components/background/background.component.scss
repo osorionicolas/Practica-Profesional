@@ -1,0 +1,350 @@
+body, html {
+    background: #ffffff;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+  }
+
+.background-container {
+  min-height: 37em;
+  width: 100%;
+  display: flex;
+  flex: 1;
+  position: relative;
+  background: linear-gradient(to bottom, #B9DFFF, #4BA0DB, #004390);
+  overflow: hidden;
+}
+.front, .middle, .back {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 50em;
+  width: 100%;
+}
+.front {
+  z-index: 3;
+}
+.middle {
+  z-index: 2;
+}
+.back {
+  z-index: 1;
+}
+
+.ground {
+  position: absolute;
+  bottom: 0;
+  background: linear-gradient(to bottom, #658433, #36471b);
+  height: 6em;
+  width: 100%;
+  border-radius: 50% 50% 0 0;
+  box-shadow: inset 0 .5em 1em lightyellow;
+}
+
+.tree.one > .top {
+  position: absolute;
+  bottom: 12em;
+  right: 3em;
+  background: linear-gradient(to bottom, #99AC5E, #658433);
+  height: 10em;
+  width: 10em;
+  border-radius: 50%;
+  box-shadow: inset .5em 1em 5em lightyellow;
+}
+.tree.one > .overlap {
+  position: absolute;
+  bottom: 12.5em;
+  right: 6em;
+  background: linear-gradient(to bottom, transparent, #99AC5E 98%);
+  height: 2em;
+  width: 3.5em;
+  border-radius: 50%;
+  box-shadow: 0 .3em .2em #36471b;
+  z-index: 2;
+}
+.tree.one > .trunk {
+  position: absolute;
+  bottom: 3em;
+  right: 7em;
+  background: linear-gradient(#8e724e, #422f15);
+  height: 10em;
+  width: 1.5em;
+  border-radius: .1em;
+  box-shadow: inset .1em 0em .2em lightyellow;
+}
+
+.tree.two > .top {
+  position: absolute;
+  bottom: 10em;
+  right: 17.8em;
+  background: linear-gradient(to bottom, #99AC5E, #658433);
+  height: 7em;
+  width: 7em;
+  border-radius: 50%;
+  box-shadow: inset .5em 1em 5em lightyellow;
+}
+.tree.two > .overlap {
+  position: absolute;
+  bottom: 10.5em;
+  right: 20em;
+  background: linear-gradient(to bottom, transparent, #99AC5E 98%);
+  height: 2em;
+  width: 2.5em;
+  border-radius: 50%;
+  box-shadow: 0 .3em .2em #36471b;
+  z-index: 2;
+}
+.tree.two > .trunk {
+  position: absolute;
+  bottom: 3em;
+  right: 20.5em;
+  background: linear-gradient(#8e724e, #422f15);
+  height: 8em;
+  width: 1.5em;
+  border-radius: .1em;
+  box-shadow: inset .1em 0em .2em lightyellow;
+}
+
+.sun-rays {
+position: absolute;
+right: 0em;
+bottom: 29em;
+height: 15em;
+width: 15em;
+z-index: -5;
+background: radial-gradient(rgba(255, 237, 175, .8) 50%, rgba(255, 237, 175, .2) 70%);
+border-radius: 50%;
+box-shadow: 0 0 .5em rgba(255, 237, 175, 1);
+animation: rays 10s infinite;
+}
+.sun {
+    position: absolute;
+    bottom: 31.5em;
+    right: 2.5em;
+    height: 10em;
+    width: 10em;
+    z-index: -5;
+    background: rgba(255, 237, 175, 1);
+    border-radius: 50%;
+    box-shadow: 0 0 1em rgba(255, 237, 175, .5), inset 0 0 .5em #FFFFAD;
+}
+
+.cloud.one {
+    position: absolute;
+    top: 11em;
+    left: 5em;
+    z-index: 2;
+    animation: moveCloud 35s linear infinite;
+    transform: scale(0.5);
+}
+.cloud.two {
+  position: absolute;
+  left: 80em;
+  top: 18em;
+  z-index: -2;
+	animation: moveCloud 45s infinite linear;
+	transform: scale(0.4);
+}
+.cloud-body {
+  position: absolute;
+  top: 10em;
+  background: #ffffff;
+  box-shadow: inset 0 .3em .5em lightyellow, 0 0 .5em #ffffff;
+  height: 9em;
+  width: 30em;
+  border-radius: 10em;
+}
+.cloud-top {
+  position: absolute;
+  top: 4em;
+  left: 3em;
+  background: #ffffff;
+  box-shadow: inset 0 .3em .5em lightyellow, 0 0 .5em #ffffff;
+  height: 13em;
+  width: 12em;
+  border-radius: 10em 10em 10% 30%;  
+}
+.cloud-puff {
+  position: absolute;
+  top: 6em;
+  left: 11em;
+  background: #ffffff;
+  box-shadow: inset 0 .3em .5em lightyellow, 0 0 .5em #ffffff;
+  height: 12em;
+  width: 12em;
+  border-radius: 50%;  
+}
+
+/*Cloud Animation*/
+@-webkit-keyframes moveCloud {
+    0% {
+        left: -25em;
+    }
+    100% {
+        left: 50em;
+    }
+}
+
+@-moz-keyframes moveCloud {
+    0% {
+        left: -25em;
+    }
+    100% {
+        left: 50em;
+    }
+}
+
+@keyframes moveCloud {
+    0% {
+        left: -25em;
+    }
+    100% {
+        left: 100em;
+    }
+}
+
+/*Sun Animation*/
+@-webkit-keyframes rays {
+    0% {
+        transform: scale(1.1);
+    }
+    25% {
+        transform: scale(0.9);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    75% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1.1);
+    }
+}
+
+@-moz-keyframes rays {
+    0% {
+        transform: scale(1.1);
+    }
+    25% {
+        transform: scale(0.9);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    75% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1.1);
+    }
+}
+
+@keyframes rays {
+    0% {
+        transform: scale(1.1);
+    }
+    25% {
+        transform: scale(0.9);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    75% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1.1);
+    }
+}
+
+/*Balloon Animation*/
+@-webkit-keyframes flow {
+    0% {
+        transform: rotate(20deg);
+    }
+    50% {
+        transform: rotate(0deg);
+    }
+     100% {
+        transform: rotate(20deg);
+
+    }
+}
+
+@-moz-keyframes flow {
+    0% {
+        transform: rotate(10deg);
+        transform-origin: bottom;
+    }
+    50% {
+        transform: rotate(0deg);
+        transform-origin: bottom;
+    }
+     100% {
+        transform: rotate(10deg);
+        transform-origin: bottom;
+    }
+}
+
+@keyframes flow {
+    0% {
+        transform: rotate(10deg);
+        transform-origin: bottom;
+    }
+    50% {
+        transform: rotate(0deg);
+        transform-origin: bottom;
+    }
+     100% {
+        transform: rotate(10deg);
+        transform-origin: bottom;
+    }
+}
+
+/*String Animation*/
+@-webkit-keyframes string {
+    0% {
+        transform: rotate(3deg);
+        transform-origin: bottom;
+    }
+    50% {
+        transform: rotate(0deg);
+        transform-origin: bottom;
+    }
+     100% {
+        transform: rotate(3deg);
+        transform-origin: bottom;
+    }
+}
+
+@-moz-keyframes string {
+    0% {
+        transform: rotate(3deg);
+        transform-origin: bottom;
+    }
+    50% {
+        transform: rotate(0deg);
+        transform-origin: bottom;
+    }
+     100% {
+        transform: rotate(3deg);
+        transform-origin: bottom;
+    }
+}
+
+@keyframes string {
+    0% {
+        transform: rotate(3deg);
+        transform-origin: bottom;
+    }
+    50% {
+        transform: rotate(0deg);
+        transform-origin: bottom;
+    }
+     100% {
+        transform: rotate(3deg);
+        transform-origin: bottom;
+    }
+}
+
