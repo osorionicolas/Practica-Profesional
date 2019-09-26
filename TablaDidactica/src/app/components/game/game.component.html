@@ -1,4 +1,4 @@
-<div *ngIf="topic=='colors'">
+<div *ngIf="topic=='colores'">
   <ion-row *ngFor="let item of array">
     <ion-card color="{{item}}" button="true" (click)="play(item)">
       <ion-card-content></ion-card-content>
@@ -6,22 +6,12 @@
   </ion-row>
 </div>
 
-<div *ngIf="topic=='animals'">
+<div *ngIf="topic!='colores'">
   <ion-row *ngFor="let item of array">
     <ion-card button="true" (click)="play(item)">
       <ion-card-content>
-          <img src="../../../assets/imagenes/animales/{{item}}.svg">
+          <img src="../../../assets/imagenes/{{topic}}/{{item}}.svg">
         </ion-card-content>
-    </ion-card>
-  </ion-row>
-</div>
-
-<div *ngIf="topic=='numbers'">
-  <ion-row *ngFor="let item of array">
-    <ion-card button="true" (click)="play(item)">
-      <ion-card-content>
-        <img src="../../../assets/imagenes/numeros/{{item}}.svg">
-      </ion-card-content>
     </ion-card>
   </ion-row>
 </div>

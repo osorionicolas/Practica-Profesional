@@ -7,9 +7,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainPage implements OnInit {
 
-  constructor() { }
+  private languageBool:boolean;
+  private topicBool:boolean;
+  private language:string;
+  private topic:string;
+  private play:boolean;
 
-  ngOnInit() {
+  constructor() {
+    this.languageBool = false;
+    this.topicBool = false;
   }
 
+  ngOnInit() {}
+
+  setOption(optionSelected, category){
+    if(category == "idiomas"){
+      this.language = optionSelected;
+      this.languageBool = true;
+    }
+    else if(category == "temas"){
+      this.topic = optionSelected;
+      this.topicBool = true;
+    }
+  }
+
+  setPlay(){
+    this.play = true;
+    this.languageBool = false;
+    this.topicBool = false;
+  }
 }

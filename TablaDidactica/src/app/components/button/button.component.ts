@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-button',
@@ -7,8 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ButtonComponent implements OnInit {
 
+  @Output() playBool: EventEmitter<void> = new EventEmitter<void>();
+
   constructor() { }
 
   ngOnInit() {}
 
+  play(){
+    this.playBool.emit();
+  }
 }

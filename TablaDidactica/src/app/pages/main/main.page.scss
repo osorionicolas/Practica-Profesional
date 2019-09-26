@@ -2,4 +2,21 @@ app-button{
     position: absolute;
     top: 40%;
     z-index: 100;
+    width: 100%;
+    text-align: center;
+}
+
+app-topic{
+    position: absolute;
+    top: 15%;
+    z-index: 100;
+    width: 100%;
+    text-align: center;
+}
+
+app-game{
+    position: absolute;
+    min-width: 100%;    
+    top: 0%;
+    z-index: 100;
 }

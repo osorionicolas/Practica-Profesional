@@ -4,14 +4,13 @@ a {
     font-family: 'Yanone Kaffeesatz';
     font-weight: 700;
     font-size: 3em;
-    display: block;
+    display: inline-block;
     padding: 4px;
     border-radius: 8px;
     box-shadow: 0px 9px 0px rgba(219,31,5,1), 0px 9px 25px rgba(0,0,0,.7);
 	width: 160px;
 	text-align: center;
     transition: all .1s ease;
-    margin-left: 25vh;
     text-decoration: none;
 }
 

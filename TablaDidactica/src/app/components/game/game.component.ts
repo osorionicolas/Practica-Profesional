@@ -12,21 +12,19 @@ export class GameComponent implements OnInit {
   private orientation: string;
 
   private array: Array<string>;
-  @Input() private language: string;
-  @Input() private topic: string;
+  @Input() language: string;
+  @Input() topic: string;
 
-  constructor(private screenOrientation: ScreenOrientation, private smartAudioService: SmartAudioService) {
-    this.topic = "animals";
-    this.language = "espanol";
-    if(this.topic == "colors")
-      this.array = Array<string>("success","danger","primary","warning","tertiary");
-    if(this.topic == "numbers")
-      this.array = Array<string>("uno","dos","tres","cuatro","cinco");
-    if(this.topic == "animals")
-      this.array = Array<string>("gato","perro","vaca","mariposa","conejo");
-  }
+  constructor(private screenOrientation: ScreenOrientation, private smartAudioService: SmartAudioService) {}
 
   ngOnInit() {
+    if(this.topic == "colores")
+      this.array = Array<string>("verde","rojo","azul","amarillo","violeta");
+    if(this.topic == "numeros")
+      this.array = Array<string>("uno","dos","tres","cuatro","cinco");
+    if(this.topic == "animales")
+      this.array = Array<string>("gato","perro","vaca","mariposa","conejo");
+
     console.log(this.screenOrientation.type);
     this.screenOrientation.onChange().subscribe(
       () => {
@@ -37,7 +35,6 @@ export class GameComponent implements OnInit {
   }
 
   play(value:string){
-    console.log("Play " + this.language + "_" + value);
     this.smartAudioService.play(this.language + "_" + value);
   }
 }

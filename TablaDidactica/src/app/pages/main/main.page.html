@@ -1,4 +1,7 @@
 <ion-content fullscreen>
   <app-background></app-background>
-  <app-button></app-button>
+  <app-topic *ngIf="!languageBool && !topicBool && !play" (selected)="setOption($event, 'idiomas')" [category]="'idiomas'"></app-topic>
+  <app-topic *ngIf="languageBool && !topicBool && !play" (selected)="setOption($event, 'temas')" [category]="'temas'"></app-topic>
+  <app-button *ngIf="languageBool && topicBool && !play" (playBool)="setPlay()"></app-button>
+  <app-game *ngIf="play" [language]="language" [topic]="topic"></app-game>
 </ion-content>
