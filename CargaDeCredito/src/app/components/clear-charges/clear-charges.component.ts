@@ -1,29 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
-import { map, filter } from 'rxjs/operators';
 import { FirebaseService } from 'src/app/services/firebase.service';
+import { AngularFirestoreDocument, AngularFirestore } from '@angular/fire/firestore';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
-  selector: 'app-credit-charges-list',
-  templateUrl: './credit-charges-list.component.html',
-  styleUrls: ['./credit-charges-list.component.scss'],
+  selector: 'app-clear-charges',
+  templateUrl: './clear-charges.component.html',
+  styleUrls: ['./clear-charges.component.scss'],
 })
-export class CreditChargesListComponent implements OnInit {
+export class ClearChargesComponent implements OnInit {
 
-  private charges: Observable<any[]>;
   private objetoDoc: AngularFirestoreDocument<any>;
 
-  constructor(private afs: AngularFirestore, private firebaseService: FirebaseService, private userService: UserService) {
-    this.userService.getAuthStateChanged().then((user:any) => {
-      this.charges = this.afs.collection('usedCharges').valueChanges().pipe(
-        map(charge => charge.sort((a:any, b:any) => new Date(a.date).getTime() - new Date(b.date).getTime()))
-      );    
-    })
-  }
+  constructor(private afs: AngularFirestore, private firebaseService: FirebaseService, private userService: UserService) {}
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   clear(collection){
     this.firebaseService.clearCollection(collection);
@@ -45,7 +36,4 @@ export class CreditChargesListComponent implements OnInit {
       }
     })
   }
-
-  
-
 }

@@ -13,6 +13,9 @@ import { UserService } from './services/user.service';
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 import { SmartAudioService } from './services/smart-audio.service';
 import { NativeAudio } from '@ionic-native/native-audio/ngx';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from 'src/environments/environment';
 
 
 @NgModule({
@@ -22,7 +25,9 @@ import { NativeAudio } from '@ionic-native/native-audio/ngx';
     BrowserModule, 
     IonicModule.forRoot(), 
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireAuthModule,
+    AngularFireModule.initializeApp(environment.firebase),
   ],
   providers: [
     StatusBar,
@@ -31,6 +36,7 @@ import { NativeAudio } from '@ionic-native/native-audio/ngx';
     ScreenOrientation,
     SmartAudioService,
     NativeAudio,
+    UserService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

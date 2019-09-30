@@ -8,6 +8,7 @@ import { IonicModule } from '@ionic/angular';
 import { MainPage } from './main.page';
 import { AlarmComponent } from 'src/app/components/alarm/alarm.component';
 import { SirenComponent } from 'src/app/components/siren/siren.component';
+import { ComponentModule } from 'src/app/components/components.module';
 
 const routes: Routes = [
   {
@@ -21,7 +22,8 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    ComponentModule
   ],
   declarations: [MainPage,AlarmComponent,SirenComponent]
 })

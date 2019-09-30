@@ -31,7 +31,7 @@ export class LoginPage implements OnInit {
         Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
       ])),
       password: new FormControl('', Validators.compose([
-        Validators.minLength(5),
+        Validators.minLength(6),
         Validators.required
       ])),
     });
@@ -45,7 +45,7 @@ export class LoginPage implements OnInit {
     ],
     'password': [
       { type: 'required', message: 'Password is required.' },
-      { type: 'minlength', message: 'Password must be at least 5 characters long.' }
+      { type: 'minlength', message: 'Password must be at least 6 characters long.' }
     ]
   };
 
@@ -55,7 +55,6 @@ export class LoginPage implements OnInit {
     this.defaultUsers.push({"id":3, "email":"usuario@usuario.com", "password":"333333", "perfil":"usuario", "sexo":"masculino"});
     this.defaultUsers.push({"id":4, "email":"anonimo@anonimo.com", "password":"444444", "perfil":"usuario", "sexo":"masculino"});
     this.defaultUsers.push({"id":5, "email":"tester@tester.com", "password":"555555", "perfil":"tester","sexo": "femenino"});
-    this.defaultUsers.push({"id":6, "email": "nosorio@utn.com","password":"nosorio", "perfil":"admin","sexo":"masculino"});
   }
 
   setDefaultUser(){

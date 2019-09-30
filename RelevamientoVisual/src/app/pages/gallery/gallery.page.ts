@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-gallery',
@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GalleryPage implements OnInit {
 
+  @Output() actualizarListado: EventEmitter<boolean> = new EventEmitter<boolean>();
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  actualizar(){
+    this.actualizarListado.emit(true);
   }
 
 }

@@ -71,6 +71,13 @@ export class CameraService {
     console.log("uploadToFirebase");
     return new Promise((resolve, reject) => {
       let fileRef = firebase.storage().ref("images/" + type + "/" + _imageBlobInfo.fileName);
+      var metadata = {
+        contentType: 'image/jpeg',
+        metadata: {
+          'user': 'nosorio',
+        }
+      }
+      fileRef.updateMetadata(metadata);
       let uploadTask = fileRef.put(_imageBlobInfo.imgBlob);
       uploadTask.on(
         "state_changed",
@@ -96,9 +103,9 @@ export class CameraService {
     });
   }
 
-  getAllImages(){
+  getAllImages(type){
     return new Promise((resolve, reject) => {
-      resolve(firebase.storage().ref("images").child("lindas").listAll());
+      resolve(firebase.storage().ref("images").child(type).listAll());
     })
   }
 

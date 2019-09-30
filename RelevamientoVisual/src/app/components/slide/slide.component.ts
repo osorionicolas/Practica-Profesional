@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { CameraService } from 'src/app/services/camera.service';
+import { IonSlides, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-slide',
@@ -8,37 +9,49 @@ import { CameraService } from 'src/app/services/camera.service';
 })
 export class SlideComponent implements OnInit {
 
+  @Input() actualizarListado: boolean;
+  @ViewChild('slides', {static: false}) slides:IonSlides;
+  images: Array<object> = new Array<object>()
+
+
   slideOpts = {
-    initialSlide: 1,
-    speed: 400,
-    direction: "vertical"
+    slidesPerView: 1,
+    spaceBetween: 10,
+    centeredSlides: true
   };
 
-  images: Array<string> = new Array<string>()
-
-  constructor(private cameraService:CameraService) { }
+  constructor(private cameraService:CameraService, private navCtrl: NavController) { }
 
   ngOnInit() {
+  }
+
+  ngOnChanges() {
     this.getAllImages();
   }
 
   getAllImages(){
-    this.images = [];
-    this.cameraService.getAllImages().then((images: firebase.storage.ListResult) => {
+    this.images = new Array<object>();
+    this.cameraService.getAllImages("lindas").then((images: firebase.storage.ListResult) => {
       images.items.forEach((image:firebase.storage.Reference) => {
-        image.getDownloadURL().then((url) => {
-          this.images.push(url);
+        Promise.all([image.getDownloadURL(), image.getMetadata()]).then((values) => {
+          this.images.push({"url": values[0], "name": image.name, "metadata": values[1]});
+
         })
       })
+    }).catch(() => {
+      this.navCtrl.navigateRoot("login");
     })
   }
 
   vote(option){
-    if(option == 0){
-      console.log("dislike");
-    }
-    else if(option == 1){
-      console.log("like");
-    }
+    this.slides.getActiveIndex().then(data =>{
+      console.log(this.images[data]["name"]);
+      if(option == 0){
+        console.log("dislike");
+      }
+      else if(option == 1){
+        console.log("like");
+      }
+    });
   }
 }

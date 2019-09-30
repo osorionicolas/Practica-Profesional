@@ -1,5 +1,4 @@
 a {
-    display: list-item;
     padding: 4px;
     border-radius: 8px;
 	width: 160px;
@@ -10,4 +9,9 @@ a:active {
     box-shadow: 0px 3px 0px rgba(219,31,5,1), 0px 3px 6px rgba(0,0,0,.9);
     position: relative;
     top: 6px;
+}
+
+.options{
+    display: grid;
+    justify-content: center;
 }

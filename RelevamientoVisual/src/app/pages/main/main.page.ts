@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-main',
@@ -7,9 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainPage implements OnInit {
 
-  constructor() { }
+  private type:string;
+
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
+    console.log(this.route.paramMap);
   }
 
 }

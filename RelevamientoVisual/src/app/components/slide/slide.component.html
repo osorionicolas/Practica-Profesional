@@ -1,20 +1,22 @@
-<ion-button (click)="getAllImages()">Actualizar</ion-button>
-<ion-slides [options]="slideOpts">
-  <ion-slide class="slide" *ngFor="let image of images">
+<ion-slides [options]="slideOpts" #slides [pager]="true">
+  <ion-slide *ngFor="let image of images">
     <ion-card>
         <ion-card-header>
           <ion-card-title>
             Subida por:
           </ion-card-title>
           <ion-card-content>
-            <img src={{image}}>
-            <ion-icon float-left (click)="vote(0)" name="thumbs-down"></ion-icon> 
-            <ion-icon float-right (click)="vote(1)" style="color:blue" name="thumbs-up"></ion-icon>
+            <img src={{image.url}}>
           </ion-card-content>
         </ion-card-header>
       </ion-card>
   </ion-slide>
 </ion-slides>
+
+<div *ngIf="images?.length > 0">
+  <ion-icon float-left (click)="vote(0)" name="thumbs-down"></ion-icon> 
+  <ion-icon float-right (click)="vote(1)" style="color:blue" name="thumbs-up"></ion-icon>
+</div>
   
 <ion-item *ngIf="images?.length==0">
   No hay imagenes subidas

@@ -1,7 +1,10 @@
 <ion-content fullscreen>
+  <button class="back"><ion-icon (click)="return()" name="arrow-back"></ion-icon></button>
+  <div *ngIf="language != '' && languageBool" class="flag-container">
+    <img class="flag"src="../../../assets/idiomas/{{language}}.svg">
+  </div>
   <app-background></app-background>
-  <app-topic *ngIf="!languageBool && !topicBool && !play" (selected)="setOption($event, 'idiomas')" [category]="'idiomas'"></app-topic>
-  <app-topic *ngIf="languageBool && !topicBool && !play" (selected)="setOption($event, 'temas')" [category]="'temas'"></app-topic>
-  <app-button *ngIf="languageBool && topicBool && !play" (playBool)="setPlay()"></app-button>
-  <app-game *ngIf="play" [language]="language" [topic]="topic"></app-game>
+  <app-topic *ngIf="!languageBool && !topicBool" (selected)="setOption($event, 'idiomas')" [category]="'idiomas'"></app-topic>
+  <app-topic *ngIf="languageBool && !topicBool" (selected)="setOption($event, 'temas')" [category]="'temas'"></app-topic>
+  <app-game *ngIf="languageBool && topicBool" [language]="language" [topic]="topic"></app-game>
 </ion-content>

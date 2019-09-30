@@ -51,12 +51,12 @@ export class AlarmComponent implements OnInit {
     this.alarmActivatedEvent.emit(this.alarmaActivada);
     const elistener = this.eventListener;
     if (this.alarmaActivada) {
-      document.getElementsByClassName("roundButton")[0].setAttribute("color","danger");
+      document.getElementById("alarm").className = "metal radial active";
       this.changeLinesColor("lineBottom","lineTop");
       window.addEventListener('deviceorientation', elistener, true);
     } 
     else {
-      document.getElementsByClassName("roundButton")[0].setAttribute("color","primary");
+      document.getElementById("alarm").className = "metal radial";
       this.changeLinesColor("lineTop","lineBottom");
       this.flagHorizontal = false;
       this.flagVertical = false;

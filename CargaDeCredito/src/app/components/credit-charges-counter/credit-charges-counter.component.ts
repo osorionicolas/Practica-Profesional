@@ -11,14 +11,20 @@ import { FirebaseService } from 'src/app/services/firebase.service';
 })
 export class CreditChargesCounterComponent implements OnInit {
 
-  private credit: Observable<any>;
+  private credit: number;
   
   constructor(private userService: UserService, private firebaseService: FirebaseService) { }
 
   ngOnInit() {
     this.userService.getAuthStateChanged().then((user:any) => {
-      this.credit = this.firebaseService.getObservableFromDocument("usersData", user.uid);
+      this.firebaseService.getObservableFromDocument("usersData", user.uid).subscribe(data =>{
+        this.setCredit(data);
+      })
     });
+  }
+
+  setCredit(credit){
+    this.credit = credit;
   }
 
 }

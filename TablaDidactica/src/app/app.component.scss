@@ -7,11 +7,6 @@
     align-items: center;
     justify-content: center; 
     background: rgba(255,255,255,1);
-    background: -moz-radial-gradient(center, ellipse cover, rgba(255,255,255,1) 0%, rgba(255,183,0,1) 100%);
-    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(255,255,255,1)), color-stop(100%, rgba(255,183,0,1)));
-    background: -webkit-radial-gradient(center, ellipse cover, rgba(255,255,255,1) 0%, rgba(255,183,0,1) 100%);
-    background: -o-radial-gradient(center, ellipse cover, rgba(255,255,255,1) 0%, rgba(255,183,0,1) 100%);
-    background: -ms-radial-gradient(center, ellipse cover, rgba(255,255,255,1) 0%, rgba(255,183,0,1) 100%);
     background: radial-gradient(ellipse at center, rgba(255,255,255,1) 0%, rgba(255,183,0,1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffb700', GradientType=1 );
  }
@@ -51,64 +46,51 @@
 
  @-webkit-keyframes heartBeat {
     0% {
-      -webkit-transform: scale(1);
       transform: scale(1);
     }
   
     14% {
-      -webkit-transform: scale(1.3);
       transform: scale(1.3);
     }
   
     28% {
-      -webkit-transform: scale(1);
       transform: scale(1);
     }
   
     42% {
-      -webkit-transform: scale(1.3);
       transform: scale(1.3);
     }
   
     70% {
-      -webkit-transform: scale(1);
       transform: scale(1);
     }
   }
   
   @keyframes heartBeat {
     0% {
-      -webkit-transform: scale(1);
       transform: scale(1);
     }
   
     14% {
-      -webkit-transform: scale(1.3);
       transform: scale(1.3);
     }
   
     28% {
-      -webkit-transform: scale(1);
       transform: scale(1);
     }
   
     42% {
-      -webkit-transform: scale(1.3);
       transform: scale(1.3);
     }
   
     70% {
-      -webkit-transform: scale(1);
       transform: scale(1);
     }
   }
   
   .heartBeat {
-    -webkit-animation-name: heartBeat;
     animation-name: heartBeat;
-    -webkit-animation-duration: 1.3s;
     animation-duration: 1.3s;
-    -webkit-animation-timing-function: ease-in-out;
     animation-timing-function: ease-in-out;
     animation-iteration-count: infinite;
   }

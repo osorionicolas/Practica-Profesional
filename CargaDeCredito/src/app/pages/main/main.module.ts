@@ -7,8 +7,8 @@ import { IonicModule } from '@ionic/angular';
 
 import { MainPage } from './main.page';
 import { ScanButtonComponent } from 'src/app/components/scan-button/scan-button.component';
-import { CreditChargesListComponent } from 'src/app/components/credit-charges-list/credit-charges-list.component';
 import { CreditChargesCounterComponent } from 'src/app/components/credit-charges-counter/credit-charges-counter.component';
+import { ClearChargesComponent } from 'src/app/components/clear-charges/clear-charges.component';
 
 const routes: Routes = [
   {
@@ -24,6 +24,6 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [MainPage, ScanButtonComponent, CreditChargesListComponent, CreditChargesCounterComponent]
+  declarations: [MainPage, ScanButtonComponent, CreditChargesCounterComponent, ClearChargesComponent]
 })
 export class MainPageModule {}

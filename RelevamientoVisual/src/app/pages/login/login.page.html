@@ -1,49 +1,43 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>Login</ion-title>
-  </ion-toolbar>
-</ion-header>
- 
-<ion-content ion-padding>
-  <form class="form" [formGroup]="validations_form" (ngSubmit)="loginUser(validations_form.value)">
- 
-    <ion-item>
-      <ion-label position="floating" color="primary">Email</ion-label>
-      <ion-input type="text" formControlName="email"></ion-input>
-    </ion-item>
-    <div class="validation-errors">
-      <ng-container *ngFor="let validation of validation_messages.email">
-        <div class="error-message" *ngIf="validations_form.get('email').hasError(validation.type) && (validations_form.get('email').dirty || validations_form.get('email').touched)">
-          {{ validation.message }}
+<ion-content>
+  <div class="login-wrap">
+    <div class="login-html">
+      <span class="tab">Sign In</span>
+      <form class="form" [formGroup]="validations_form" (ngSubmit)="loginUser(validations_form.value)">
+        <div class="group">
+          <ion-label for="user" class="label">Email</ion-label>
+          <input type="text" class="input" formControlName="email" required>
         </div>
-      </ng-container>
-    </div>
- 
-    <ion-item>
-      <ion-label  position="floating" color="primary">Password</ion-label>
-      <ion-input type="password" formControlName="password" class="form-controll" required></ion-input>
-    </ion-item>
-    <div class="validation-errors">
-      <ng-container *ngFor="let validation of validation_messages.password">
-        <div class="error-message" *ngIf="validations_form.get('password').hasError(validation.type) && (validations_form.get('password').dirty || validations_form.get('password').touched)">
-          {{ validation.message }}
+        <div class="validation-errors">
+            <ng-container *ngFor="let validation of validation_messages.email">
+              <div class="error-message" *ngIf="validations_form.get('email').hasError(validation.type) && (validations_form.get('email').dirty || validations_form.get('email').touched)">
+                {{ validation.message }}
+              </div>
+            </ng-container>
+          </div>
+        <div class="group">
+          <ion-label for="pass" class="label">Password</ion-label>
+          <input type="password" class="input" formControlName="password" data-type="password" required>
         </div>
-      </ng-container>
+        <div class="validation-errors">
+          <ng-container *ngFor="let validation of validation_messages.password">
+            <div class="error-message" *ngIf="validations_form.get('password').hasError(validation.type) && (validations_form.get('password').dirty || validations_form.get('password').touched)">
+              {{ validation.message }}
+            </div>
+          </ng-container>
+        </div>
+        <br>
+        <div class="group">
+          <ion-button shape="round" type="submit" [disabled]="!validations_form.valid">Sign In</ion-button>
+          <label class="error-message">{{errorMessage}}</label>
+        </div>
+      </form>
+      <div class="hr"></div>
+      <ion-item>
+          <ion-label>Default Users</ion-label>
+          <ion-select okText="Okay" cancelText="Dismiss" [(ngModel)]="user" (ionChange)="setDefaultUser()">
+            <ion-select-option *ngFor="let user of defaultUsers" [value] = "user">{{user.email}}</ion-select-option>
+          </ion-select>
+        </ion-item>
     </div>
- 
-    <ion-button  class="submit-btn" type="submit"  [disabled]="!validations_form.valid">Log In</ion-button>
- 
-    <label class="error-message">{{errorMessage}}</label>
-  </form>
-  <p class="go-to-register">
-    No account yet? <a (click)="goToRegisterPage()">Create an account.</a>
-  </p>
-
-
-  <ion-item>
-    <ion-label>Default Users</ion-label>
-    <ion-select okText="Okay" cancelText="Dismiss" [(ngModel)]="user" (ionChange)="setDefaultUser()">
-      <ion-select-option *ngFor="let user of defaultUsers" [value] = "user">{{user.email}}</ion-select-option>
-    </ion-select>
-  </ion-item>
+  </div>  
 </ion-content>

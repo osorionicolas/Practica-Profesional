@@ -1,0 +1,56 @@
+.splash {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    background: rgba(255,255,255,1);
+    background: radial-gradient(ellipse at center, rgba(255,255,255,1) 0%, rgba(255,183,0,1) 100%);
+ }
+
+ .spinner {
+    background-image: url(../../resources/icon.png);
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    display: block;
+    width: 150px;
+    height: 150px;  
+    background-size: cover; /* Resize the background image to cover the entire container */
+ }
+
+ 
+.texto {
+    color: whitesmoke;
+    text-align: center;
+ }
+
+ .titulo {
+    position: fixed;
+    top: 30px;
+    font-weight: bold;
+    font-size: 2.5rem;    
+    font-family: "Arial Black", Gadget, sans-serif;
+    font-style: oblique;
+ }
+
+ .nombre {
+    position: fixed;
+    bottom: 30px;
+    font-size: 1.5rem;
+    font-family: Arial, Helvetica, sans-serif;
+ }
+ 
+  @keyframes rotation {
+    0% {
+      transform: rotate(-360deg);
+    }
+  }
+  
+  .heartBeat {
+    animation-name: rotation;
+    animation-duration: 1.3s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+  }

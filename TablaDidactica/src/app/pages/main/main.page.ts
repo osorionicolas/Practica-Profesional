@@ -11,7 +11,6 @@ export class MainPage implements OnInit {
   private topicBool:boolean;
   private language:string;
   private topic:string;
-  private play:boolean;
 
   constructor() {
     this.languageBool = false;
@@ -31,9 +30,10 @@ export class MainPage implements OnInit {
     }
   }
 
-  setPlay(){
-    this.play = true;
+  return(){
     this.languageBool = false;
     this.topicBool = false;
+    this.language = "";
+    this.topic = "";
   }
 }

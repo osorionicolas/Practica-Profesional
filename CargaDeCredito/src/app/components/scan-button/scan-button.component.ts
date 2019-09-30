@@ -13,11 +13,12 @@ import { FirebaseService } from 'src/app/services/firebase.service';
 export class ScanButtonComponent implements OnInit {
 
   private currentUser;
-  private device: string = "";
+  private device: string = "mobile";
+  private userCredit;
 
   constructor(private firebaseService: FirebaseService, private afs: AngularFirestore, private barcodeScanner: BarcodeScanner, private afsAuth: AngularFireAuth, private toastController: ToastController) {}
 
-  ngOnInit(){ }
+  ngOnInit(){}
   
   scan(){
     if(this.device == "mobile"){
@@ -39,11 +40,14 @@ export class ScanButtonComponent implements OnInit {
         if (!doc.exists || doc.data().enabled == "false") {
           this.presentToast('Código QR ya utilizado', "tertiary");
         } else {
-          let credit = doc.data().value;
-          this.firebaseService.update(dataNombre,id,{"enabled":"false"});
-          this.firebaseService.add("usedCharges", {"date":Date.now(),"user":this.currentUser.uid,"id":doc.id,"value":credit});
-          this.firebaseService.setDocument("usersData",this.currentUser.uid,"credit",credit);
-          this.presentToast('Carga Realizada con Exito', "success");
+          this.firebaseService.getOnce("usersData", this.currentUser.uid).then(data =>{
+            let actualCredit = data.get("credit") || 0
+            let credit = actualCredit + doc.data().value;
+            this.firebaseService.update(dataNombre,id,{"enabled":"false"});
+            this.firebaseService.add("usedCharges", {"date":Date.now(),"user":this.currentUser.uid,"id":id});
+            this.firebaseService.setDocument("usersData",this.currentUser.uid,"credit",credit);
+            this.presentToast('Carga Realizada con Exito', "success");
+          })
         }
       })
   }

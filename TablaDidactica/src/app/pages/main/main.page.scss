@@ -20,3 +20,34 @@ app-game{
     top: 0%;
     z-index: 100;
 }
+
+.back{
+    margin: 12px;
+    font-size: 42px;
+    position: absolute;
+    z-index: 200;
+    color: rgba(255,255,255,1);
+    background-color: rgba(219,87,5,1);
+    border-radius: 8px;
+    box-shadow: 0px 7px 0px rgba(219,31,5,1), 0px 9px 25px rgba(0,0,0,.7);
+    width: 90px;
+    height: 50px;
+}
+
+.back:active {
+    box-shadow: 0px 3px 0px rgba(219,31,5,1), 0px 3px 6px rgba(0,0,0,.9);
+    top: 6px;
+}
+
+.flag{
+    position: absolute;
+    z-index: 200;
+    width: 125px;
+    height: 80px;
+}
+
+
+.flag-container{
+    text-align: right;
+    width: 70%;
+}

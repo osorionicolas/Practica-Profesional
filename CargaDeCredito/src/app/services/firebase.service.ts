@@ -67,4 +67,8 @@ export class FirebaseService {
   getObservableFromDocument(collection, id){
     return this.afs.collection(collection).doc(id).valueChanges();
   }
+
+  getOnce(collection, id){
+    return this.afs.collection(collection).doc(id).get().toPromise();
+  }
 }
