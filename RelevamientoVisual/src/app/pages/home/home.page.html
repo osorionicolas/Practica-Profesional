@@ -1,4 +1,8 @@
 <ion-content>
-  <app-button [type]="'lindas'" [photoUrl]="'../../../assets/img/casa_linda.png'"></app-button>
-  <app-button [type]="'feas'" [photoUrl]="'../../../assets/img/casa_fea.png'"></app-button>
+  <div class="login-wrap">
+    <div class="login-html">
+      <app-button [type]="'lindas'" [photoUrl]="'../../../assets/img/casa_linda.png'" [destinationUrl]="'/main/camera/lindas'"></app-button>
+      <app-button [type]="'feas'" [photoUrl]="'../../../assets/img/casa_fea.png'" [destinationUrl]="'/main/camera/feas'"></app-button>
+    </div>
+  </div>
 </ion-content>

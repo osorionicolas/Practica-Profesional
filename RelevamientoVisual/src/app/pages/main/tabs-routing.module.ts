@@ -4,9 +4,11 @@ import { MainPage } from './main.page';
 
 const routes: Routes = [
   { path: '', component: MainPage, children: [
-    { path: 'gallery', loadChildren: 'src/app/pages/gallery/gallery.module#GalleryPageModule' },
-    { path: 'camera', loadChildren: 'src/app/pages/photos/photos.module#PhotosPageModule' },
-    { path: '', redirectTo: '/main/camera', pathMatch: 'full' }
+    { path: 'gallery/lindas', loadChildren: 'src/app/pages/gallery/gallery.module#GalleryPageModule' },
+    { path: 'gallery/feas', loadChildren: 'src/app/pages/gallery/gallery.module#GalleryPageModule' },
+    { path: 'camera/lindas', loadChildren: 'src/app/pages/photos/photos.module#PhotosPageModule' },
+    { path: 'camera/feas', loadChildren: 'src/app/pages/photos-feas/photos-feas.module#PhotosFeasPageModule' },
+    { path: 'home', redirectTo: '/home' },
   ]}
 ];
 

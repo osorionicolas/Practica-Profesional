@@ -107,25 +107,25 @@ export class AlarmComponent implements OnInit {
     }
     console.log("Beta: " + beta + " Alpha: " + alpha + " Gamma: " + gamma);
     console.log("Vertical: " + this.flagVertical + " Horizontal: " + this.flagHorizontal + " Right: " + this.flagRight + " Left: " + this.flagLeft);
-    if (this.flagVertical == false && (beta >= 80 && beta <= 100)) {
+    if (!this.flagVertical && (beta >= 80 && beta <= 100)) {
       console.log("Vertical");
       this.stopHorizontal();
       this.startVertical();
-    } else if (this.flagHorizontal == false && (beta >= -10 && beta <= 10)) {
+    } else if (!this.flagHorizontal && (beta >= -10 && beta <= 10)) {
       console.log("Horizontal");
       this.stopVertical();
       this.startHorizontal();
-    } else if (this.flagLeft == false && (alpha > 300 && gamma < -60)) {
+    } else if (!this.flagLeft && !this.flagRight && this.flagHorizontal && (gamma < -70 && gamma >= -90)) {
       console.log("Izquierda");
       this.flagLeft = true;
       this.flagRight = false;
       this.smartAudioService.play('error');
-    } else if (this.flagRight == false && (alpha < 300 && gamma > 70)) {
+    } else if (!this.flagRight && !this.flagLeft && this.flagHorizontal && (gamma <= 90 && gamma > 70)) {
       console.log("Derecha");
       this.flagRight = true;
       this.flagLeft = false;
       this.smartAudioService.play('click');
-    } else if (this.flagHorizontal == true && (beta >= -10 && beta <= 10)) {
+    } else if (this.flagHorizontal && (beta >= -10 && beta <= 10) && !(gamma <= 90 && gamma > 70) && !(gamma < -70 && gamma >= -90)) {
       this.flagRight = false;
       this.flagLeft = false;
     }

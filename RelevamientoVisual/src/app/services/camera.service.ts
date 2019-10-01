@@ -4,6 +4,8 @@ import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import * as firebase from 'firebase/app';
 import { File } from "@ionic-native/file/ngx";
+import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +19,9 @@ export class CameraService {
     private camera: Camera, 
     private file: File,
     private localNotifications: LocalNotifications,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private afs: AngularFirestore,
+    private afsAuth: AngularFireAuth
   ) { }
 
   async takePhoto(type:string){
@@ -26,13 +30,17 @@ export class CameraService {
       destinationType: this.camera.DestinationType.FILE_URI,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
-      saveToPhotoAlbum: true
+      saveToPhotoAlbum: true,
+      targetHeight: 600,
+      targetWidth: 304
     }
     try{
       let cameraInfo = await this.camera.getPicture(options);
-      let blobInfo = await this.makeFileIntoBlob(cameraInfo);
+      let blobInfo:any = await this.makeFileIntoBlob(cameraInfo);
       await this.uploadToFirebase(blobInfo, type);
       this.presentToast('Subida Realizada con Éxito', "success");
+      let currentUser = this.getCurrentUser().email.split('@')[0];
+      this.setDocument("images", blobInfo.fileName, { "user" : currentUser, "date": Date.now() })
     } 
     catch (e) { }
   }
@@ -40,7 +48,6 @@ export class CameraService {
   private makeFileIntoBlob(_imagePath) {
     return new Promise((resolve, reject) => {
       let fileName = "";
-      console.log(_imagePath);
       this.file
         .resolveLocalFilesystemUrl(_imagePath)
         .then(fileEntry => {
@@ -71,13 +78,6 @@ export class CameraService {
     console.log("uploadToFirebase");
     return new Promise((resolve, reject) => {
       let fileRef = firebase.storage().ref("images/" + type + "/" + _imageBlobInfo.fileName);
-      var metadata = {
-        contentType: 'image/jpeg',
-        metadata: {
-          'user': 'nosorio',
-        }
-      }
-      fileRef.updateMetadata(metadata);
       let uploadTask = fileRef.put(_imageBlobInfo.imgBlob);
       uploadTask.on(
         "state_changed",
@@ -117,6 +117,22 @@ export class CameraService {
       color: color
     });
     toast.present();
+  }
+
+  setDocument(collection:string, id:string, object:object): void {
+    this.afs.collection(collection).doc(id).set(object);
+  }
+
+  getOnce(collection, id){
+    return this.afs.collection(collection).doc(id).get().toPromise();
+  }
+
+  getCurrentUser(){
+    return this.afsAuth.auth.currentUser;
+  }
+
+  getObservableFromDocument(collection, id){
+    return this.afs.collection(collection).doc(id).valueChanges();
   }
 
 }

@@ -10,13 +10,14 @@ export class ButtonComponent implements OnInit {
 
   @Input() type: string;
   @Input() photoUrl: string;
+  @Input() destinationUrl: string
   
   constructor(private router: Router) { }
 
   ngOnInit() {}
 
   goTo(){
-    this.router.navigate(["/main", {queryParams:{"type":this.type}}]);
+    this.router.navigate(["/main", {"type": this.type}]);
   }
 
 }
