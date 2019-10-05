@@ -29,13 +29,6 @@ export class UserService {
      .then(
        res => {
          console.log(res);
-          /*this.dataApi.TraerUno(userData.user.uid, 'usuarios').pipe(take(1)).subscribe(userx => {
-            this.user.Uid = userx.Uid;
-            this.user.Email = userx.Email;
-            this.user.ImagenUrl = userx.ImagenUrl;
-            this.user.Nombre = userx.Nombre;
-            this.user.Perfil = userx.Perfil;
-          });*/
         resolve(res)
        },
        err => reject(err))

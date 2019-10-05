@@ -1,5 +1,5 @@
 <ion-content fullscreen>
-  <button class="back"><ion-icon (click)="return()" name="arrow-back"></ion-icon></button>
+  <button *ngIf="language" class="back"><ion-icon (click)="return()" name="arrow-back"></ion-icon></button>
   <div *ngIf="language != '' && languageBool" class="flag-container">
     <img class="flag"src="../../../assets/idiomas/{{language}}.svg">
   </div>

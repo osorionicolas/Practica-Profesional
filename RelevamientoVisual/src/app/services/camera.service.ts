@@ -26,13 +26,11 @@ export class CameraService {
 
   async takePhoto(type:string){
     const options: CameraOptions = {
-      quality: 50,
+      quality: 75,
       destinationType: this.camera.DestinationType.FILE_URI,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
       saveToPhotoAlbum: true,
-      targetHeight: 600,
-      targetWidth: 304
     }
     try{
       let cameraInfo = await this.camera.getPicture(options);

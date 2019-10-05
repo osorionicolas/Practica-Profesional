@@ -14,7 +14,6 @@ export class LoginFormComponent implements OnInit {
   validations_form: FormGroup;
   errorMessage: string = '';
   defaultUsers: Array<User> = [];
-  user: User;
 
   constructor(    
     private navCtrl: NavController,
@@ -38,12 +37,12 @@ export class LoginFormComponent implements OnInit {
  
   validation_messages = {
     'email': [
-      { type: 'required', message: 'Email is required.' },
-      { type: 'pattern', message: 'Please enter a valid email.' }
+      { type: 'required', message: 'El email es requerido.' },
+      { type: 'pattern', message: 'Ingrese un email válido.' }
     ],
     'password': [
-      { type: 'required', message: 'Password is required.' },
-      { type: 'minlength', message: 'Password must be at least 6 characters long.' }
+      { type: 'required', message: 'La contraseña es requerida.' },
+      { type: 'minlength', message: 'La password debe contener al menos 6 catacteres.' }
     ]
   };
 
@@ -55,8 +54,8 @@ export class LoginFormComponent implements OnInit {
     this.defaultUsers.push({"id":5, "email":"tester@tester.com", "password":"555555", "perfil":"tester","sexo": "femenino"});
   }
 
-  setDefaultUser(){
-    this.loginUser(this.user);
+  setDefaultUser(user){
+    this.loginUser(user);
   }
  
  
@@ -69,5 +68,5 @@ export class LoginFormComponent implements OnInit {
       this.errorMessage = err.message;
     })
   }
- 
+
 }

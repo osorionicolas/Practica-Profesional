@@ -1,6 +1,6 @@
 <div *ngIf="topic=='colores'">
   <ion-row *ngFor="let item of array">
-    <ion-card color="{{item}}" button="true" (click)="play(item)">
+    <ion-card class="{{item}}" button="true" (click)="play(item)">
       <ion-card-content></ion-card-content>
     </ion-card>
   </ion-row>

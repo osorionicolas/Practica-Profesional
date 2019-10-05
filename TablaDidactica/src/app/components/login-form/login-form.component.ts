@@ -56,13 +56,7 @@ export class LoginFormComponent implements OnInit {
     this.defaultUsers.push({"id":3, "email":"usuario@usuario.com", "password":"333333", "perfil":"usuario", "sexo":"masculino"});
     this.defaultUsers.push({"id":4, "email":"anonimo@anonimo.com", "password":"444444", "perfil":"usuario", "sexo":"masculino"});
     this.defaultUsers.push({"id":5, "email":"tester@tester.com", "password":"555555", "perfil":"tester","sexo": "femenino"});
-    this.defaultUsers.push({"id":6, "email": "nosorio@utn.com","password":"nosorio", "perfil":"admin","sexo":"masculino"});
   }
-
-  setDefaultUser(){
-    this.loginUser(this.user);
-  }
- 
  
   loginUser(value){
     this.authService.loginUser(value)

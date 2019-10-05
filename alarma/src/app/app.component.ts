@@ -4,6 +4,7 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { SmartAudioService } from './services/smart-audio.service';
+import { timer } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +12,9 @@ import { SmartAudioService } from './services/smart-audio.service';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
+
+  showSplash: Boolean = true;
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -24,10 +28,13 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      this.smartAudioService.preload('login', 'assets/sounds/login.mp3');
-      this.smartAudioService.preload('error', 'assets/sounds/error.mp3');
-      this.smartAudioService.preload('click', 'assets/sounds/click.mp3');
-      this.smartAudioService.preload('confirmation', 'assets/sounds/confirmation.mp3');
+      this.smartAudioService.preload('horizontal', 'assets/sounds/horizontal.mp3');
+      this.smartAudioService.preload('vertical', 'assets/sounds/vertical.mp3');
+      this.smartAudioService.preload('derecha', 'assets/sounds/derecha.mp3');
+      this.smartAudioService.preload('izquierda', 'assets/sounds/izquierda.mp3');
+      timer(5000).subscribe( () => {
+        this.showSplash = false;
+      });
     });
   }
 }

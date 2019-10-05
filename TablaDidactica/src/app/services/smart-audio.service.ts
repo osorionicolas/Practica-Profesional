@@ -27,7 +27,8 @@ export class SmartAudioService {
             this.sounds.push(audio);
 
         } else {
-            this.nativeAudio.preloadComplex(key, asset, 100, 1, 0)
+            //this.nativeAudio.preloadComplex(key, asset, 100, 1, 0)
+            this.nativeAudio.preloadSimple(key, asset)
             .catch(error => {
                 alert('Error in preload:' + error + ' ' + key + ' ' + asset);
             });

@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Flashlight } from '@ionic-native/flashlight/ngx';
 import { Vibration } from '@ionic-native/vibration/ngx';
 import { SmartAudioService } from 'src/app/services/smart-audio.service';
+import { timer } from 'rxjs';
 
 @Component({
   selector: 'app-alarm',
@@ -16,7 +17,6 @@ export class AlarmComponent implements OnInit {
   private flagRight: boolean;
   private flagHorizontal: boolean;
   private flagVertical: boolean;
-  private flagObtenerDatos: boolean;
   private eventListener;
 
   constructor(private vibration: Vibration, private smartAudioService: SmartAudioService,
@@ -26,14 +26,9 @@ export class AlarmComponent implements OnInit {
     this.flagVertical = false;
     this.flagRight = false;
     this.flagLeft = false;
-    this.flagObtenerDatos = true;
     this.eventListener = event => {
       this.processOrientation(event);
     };
-
-    setInterval(x => {
-      this.flagObtenerDatos = true;
-    }, 1000);
   }
 
   ngOnInit() {
@@ -71,7 +66,6 @@ export class AlarmComponent implements OnInit {
   private stopVertical() {
     this.flagLeft = false;
     this.flagRight = false;
-    this.flashlight.switchOff();
   }
 
   private startVertical() {
@@ -80,7 +74,10 @@ export class AlarmComponent implements OnInit {
       this.flagLeft = true;
       this.flagRight = true;
       this.flashlight.switchOn();
-      this.smartAudioService.play('login');
+      timer(5000).subscribe( () => {
+        this.flashlight.switchOff();
+      });
+      this.smartAudioService.play('vertical');
   }
 
   private stopHorizontal() {
@@ -95,36 +92,29 @@ export class AlarmComponent implements OnInit {
       this.flagLeft = false;
       this.flagRight = false;
       this.vibration.vibrate(5000);
-      this.smartAudioService.play('confirmation');
+      this.smartAudioService.play('horizontal');
   }
 
   private processOrientation(event: DeviceOrientationEvent) {
     const alpha = event.alpha === null ? 0 : Math.round(event.alpha);
     const beta = event.beta === null ? 0 : Math.round(event.beta);
     const gamma = event.gamma === null ? 0 : Math.round(event.gamma);
-    if (this.flagObtenerDatos) {
-      this.flagObtenerDatos = false;
-    }
-    console.log("Beta: " + beta + " Alpha: " + alpha + " Gamma: " + gamma);
-    console.log("Vertical: " + this.flagVertical + " Horizontal: " + this.flagHorizontal + " Right: " + this.flagRight + " Left: " + this.flagLeft);
+    //console.log("Beta: " + beta + " Alpha: " + alpha + " Gamma: " + gamma);
+    //console.log("Vertical: " + this.flagVertical + " Horizontal: " + this.flagHorizontal + " Right: " + this.flagRight + " Left: " + this.flagLeft);
     if (!this.flagVertical && (beta >= 80 && beta <= 100)) {
-      console.log("Vertical");
       this.stopHorizontal();
       this.startVertical();
     } else if (!this.flagHorizontal && (beta >= -10 && beta <= 10)) {
-      console.log("Horizontal");
       this.stopVertical();
       this.startHorizontal();
     } else if (!this.flagLeft && !this.flagRight && this.flagHorizontal && (gamma < -70 && gamma >= -90)) {
-      console.log("Izquierda");
       this.flagLeft = true;
       this.flagRight = false;
-      this.smartAudioService.play('error');
+      this.smartAudioService.play('izquierda');
     } else if (!this.flagRight && !this.flagLeft && this.flagHorizontal && (gamma <= 90 && gamma > 70)) {
-      console.log("Derecha");
       this.flagRight = true;
       this.flagLeft = false;
-      this.smartAudioService.play('click');
+      this.smartAudioService.play('derecha');
     } else if (this.flagHorizontal && (beta >= -10 && beta <= 10) && !(gamma <= 90 && gamma > 70) && !(gamma < -70 && gamma >= -90)) {
       this.flagRight = false;
       this.flagLeft = false;

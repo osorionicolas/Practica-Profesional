@@ -1,10 +1,5 @@
 <div class="login">
   <form class="form" [formGroup]="validations_form" (ngSubmit)="loginUser(validations_form.value)">
- 
-    <ion-item>
-      <ion-label position="floating" color="primary">Email</ion-label>
-      <ion-input type="text" formControlName="email"></ion-input>
-    </ion-item>
     <div class="validation-errors">
       <ng-container *ngFor="let validation of validation_messages.email">
         <div class="error-message" *ngIf="validations_form.get('email').hasError(validation.type) && (validations_form.get('email').dirty || validations_form.get('email').touched)">
@@ -12,11 +7,11 @@
         </div>
       </ng-container>
     </div>
- 
     <ion-item>
-      <ion-label position="floating" color="primary">Password</ion-label>
-      <ion-input type="password" formControlName="password" class="form-controll" required></ion-input>
+      <ion-label position="floating" color="primary">Email</ion-label>
+      <ion-input type="text" formControlName="email"></ion-input>
     </ion-item>
+
     <div class="validation-errors">
       <ng-container *ngFor="let validation of validation_messages.password">
         <div class="error-message" *ngIf="validations_form.get('password').hasError(validation.type) && (validations_form.get('password').dirty || validations_form.get('password').touched)">
@@ -24,15 +19,22 @@
         </div>
       </ng-container>
     </div>
-    <button class="customBtn" type="submit" [disabled]="!validations_form.valid">Log In</button>
+    <ion-item>
+      <ion-label position="floating" color="primary">Contraseña</ion-label>
+      <ion-input type="password" formControlName="password" class="form-controll" required></ion-input>
+    </ion-item>
+
+    <button class="customBtn" type="submit" [disabled]="!validations_form.valid">Ingresar</button>
 
     <label class="error-message">{{errorMessage}}</label>
   </form>
-
-  <ion-item>
-    <ion-label>Default Users</ion-label>
-    <ion-select okText="Okay" cancelText="Dismiss" [(ngModel)]="user" (ionChange)="setDefaultUser()">
-      <ion-select-option *ngFor="let user of defaultUsers" [value] = "user">{{user.email}}</ion-select-option>
-    </ion-select>
-  </ion-item>
 </div>
+
+<ion-fab vertical="bottom" horizontal="start" slot="fixed">
+  <ion-fab-button>
+    <ion-icon name="settings"></ion-icon>
+  </ion-fab-button>
+  <ion-fab-list side="end">
+    <ion-fab-button *ngFor="let user of defaultUsers" (click)="loginUser(user)">{{user.email.split("@")[0]}}</ion-fab-button>
+  </ion-fab-list>
+</ion-fab>
