@@ -12,7 +12,10 @@ export class SlideComponent implements OnInit {
 
   @Input() actualizarListado: string;
   @ViewChild('slides', {static: false}) slides:IonSlides;
-  images: Array<object> = new Array<object>();
+  images: Array<object>;
+  private eventListener;
+  private flagLeft: boolean = false;
+  private flagRight: boolean = false;
 
   slideOpts = {
     slidesPerView: 1,
@@ -25,10 +28,15 @@ export class SlideComponent implements OnInit {
     private navCtrl: NavController, 
     private global: Global,
     private toastController: ToastController,
-    public loadingController: LoadingController
-  ) { }
+    private loadingController: LoadingController,
+  ) { 
+    this.eventListener = event => {
+      this.processOrientation(event);
+    };
+  }
 
   ngOnInit() {
+    window.addEventListener('deviceorientation', this.eventListener, true);
   }
 
   ngOnChanges() {
@@ -54,6 +62,7 @@ export class SlideComponent implements OnInit {
     })
   }
 
+  //Al votar piso el utimo usuario que voto la foto y el anterior puede volver a votar
   vote(option){
     this.slides.getActiveIndex().then(index =>{
       let imageName = this.images[index]["name"];
@@ -95,4 +104,28 @@ export class SlideComponent implements OnInit {
 
     const { role, data } = await loading.onDidDismiss();
   }
+
+  private goToHome() {
+    this.navCtrl.navigateRoot("/home");
+  }
+
+  private processOrientation(event: DeviceOrientationEvent) {
+    const beta = event.beta === null ? 0 : Math.round(event.beta);
+    const gamma = event.gamma === null ? 0 : Math.round(event.gamma);
+    if ((beta >= 80 && beta <= 100)) {
+      this.goToHome();
+    } else if (!this.flagLeft && !this.flagRight && (gamma < -50 && gamma >= -70)) {
+      this.flagLeft = true;
+      this.flagRight = false;
+      this.slides.slidePrev();
+    } else if (!this.flagRight && !this.flagLeft && (gamma <= 70 && gamma > 50)) {
+      this.flagRight = true;
+      this.flagLeft = false;
+      this.slides.slideNext().then(() => {});
+    } else if (!(gamma <= 70 && gamma > 50) && !(gamma < -50 && gamma >= -70)) {
+      this.flagRight = false;
+      this.flagLeft = false;
+    }
+  }
+
 }

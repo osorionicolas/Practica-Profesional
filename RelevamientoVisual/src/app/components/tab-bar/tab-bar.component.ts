@@ -11,6 +11,8 @@ export class TabBarComponent implements OnInit {
 
   private urlGallery:string = "/main/gallery/";
   private urlCamera:string = "/main/camera/";
+  private urlChart:string = "/main/chart/";
+  private urlList:string = "/main/list/";
 
   constructor(private global: Global, private router: Router) {
   }
@@ -21,8 +23,15 @@ export class TabBarComponent implements OnInit {
   goTo(option){
     if(option == "camera"){
       this.router.navigateByUrl(this.urlCamera + this.global.type);
-    }else if(option == "gallery"){
+    }
+    else if(option == "gallery"){
       this.router.navigateByUrl(this.urlGallery + this.global.type);
+    }
+    else if(option == "chart"){
+      this.router.navigateByUrl(this.urlChart + this.global.type);
+    }
+    else if(option == "list"){
+      this.router.navigateByUrl(this.urlList + this.global.type);
     }
   }
 }

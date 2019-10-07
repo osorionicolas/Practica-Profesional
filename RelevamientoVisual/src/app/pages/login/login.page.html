@@ -1,7 +1,7 @@
 <ion-content>
   <div class="login-wrap">
     <div class="login-html">
-      <span class="tab">Sign In</span>
+      <span class="tab">Iniciar Sesión</span>
       <form class="form" [formGroup]="validations_form" (ngSubmit)="loginUser(validations_form.value)">
         <div class="group">
           <ion-label for="user" class="label">Email</ion-label>
@@ -15,7 +15,7 @@
             </ng-container>
           </div>
         <div class="group">
-          <ion-label for="pass" class="label">Password</ion-label>
+          <ion-label for="pass" class="label">Contraseña</ion-label>
           <input type="password" class="input" formControlName="password" data-type="password" required>
         </div>
         <div class="validation-errors">
@@ -27,7 +27,7 @@
         </div>
         <br>
         <div class="group">
-          <ion-button shape="round" type="submit" [disabled]="!validations_form.valid">Sign In</ion-button>
+          <ion-button shape="round" type="submit" [disabled]="!validations_form.valid">Ingresar</ion-button>
           <label class="error-message">{{errorMessage}}</label>
         </div>
       </form>
