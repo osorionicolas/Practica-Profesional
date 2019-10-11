@@ -41,12 +41,12 @@ export class LoginFormComponent implements OnInit {
  
   validation_messages = {
     'email': [
-      { type: 'required', message: 'Email is required.' },
-      { type: 'pattern', message: 'Please enter a valid email.' }
+      { type: 'required', message: 'El email es requerido.' },
+      { type: 'pattern', message: 'Ingrese un email válido.' }
     ],
     'password': [
-      { type: 'required', message: 'Password is required.' },
-      { type: 'minlength', message: 'Password must be at least 6 characters long.' }
+      { type: 'required', message: 'La contraseña es requerida.' },
+      { type: 'minlength', message: 'La password debe contener al menos 6 catacteres.' }
     ]
   };
 

@@ -58,7 +58,7 @@ export class AlarmComponent implements OnInit {
       this.flagRight = false;
       this.flagLeft = false;
       this.stopVertical();
-      this.stopHorizontal();
+      this.init();
       window.removeEventListener('deviceorientation', elistener, true);
     }
   }
@@ -92,6 +92,14 @@ export class AlarmComponent implements OnInit {
       this.flagLeft = false;
       this.flagRight = false;
       this.vibration.vibrate(5000);
+      this.smartAudioService.play('horizontal');
+  }
+
+  private init(){
+      this.flagHorizontal = true;
+      this.flagVertical = false;
+      this.flagLeft = false;
+      this.flagRight = false;
       this.smartAudioService.play('horizontal');
   }
 
