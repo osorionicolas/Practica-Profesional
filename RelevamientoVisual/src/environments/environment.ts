@@ -5,7 +5,13 @@
 export const environment = {
   production: false,
   firebase: {
-
+    apiKey: "AIzaSyBMxsBYoTnVum_RLtXgC_k6L_PnNC7GeUA",
+    authDomain: "practica-profesional-323a6.firebaseapp.com",
+    databaseURL: "https://practica-profesional-323a6.firebaseio.com",
+    projectId: "practica-profesional-323a6",
+    storageBucket: "practica-profesional-323a6.appspot.com",
+    messagingSenderId: "804099428750",
+    appId: "1:804099428750:web:d6a713563ea30484"
   }
 };
 

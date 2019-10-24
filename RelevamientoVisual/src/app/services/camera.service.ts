@@ -6,14 +6,12 @@ import * as firebase from 'firebase/app';
 import { File } from "@ionic-native/file/ngx";
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { Global } from '../global';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CameraService {
-
-  private images: Array<string>;
-  private type: string;
 
   constructor(
     private camera: Camera, 
@@ -21,7 +19,8 @@ export class CameraService {
     private localNotifications: LocalNotifications,
     private toastController: ToastController,
     private afs: AngularFirestore,
-    private afsAuth: AngularFireAuth
+    private afsAuth: AngularFireAuth,
+    private global: Global
   ) { }
 
   async takePhoto(type:string){
@@ -44,6 +43,7 @@ export class CameraService {
   }
 
   private makeFileIntoBlob(_imagePath) {
+    this.takePhoto(this.global.type);
     return new Promise((resolve, reject) => {
       let fileName = "";
       this.file

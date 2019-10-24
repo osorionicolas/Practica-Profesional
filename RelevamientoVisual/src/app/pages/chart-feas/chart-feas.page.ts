@@ -69,11 +69,14 @@ export class ChartFeasPage {
       this.cameraService.getAllImages(this.global.type).then((images: firebase.storage.ListResult) => {
         images.items.forEach((image:firebase.storage.Reference) => {
           Promise.all([image.getDownloadURL(),this.cameraService.getOnce("images", image.name), this.cameraService.getOnce("votes", image.name) ]).then(values => {
-            this.images.push({"url": values[0], "name": image.name, "date":values[1].get("date"), "user": values[1].get("user"), "votes":values[2].get("votes") || 0});
-            this.labels.push(image.name);
-            this.data.push(values[2].get("votes") || 0);
-            this.colorArray.push('#'+Math.floor(Math.random()*16777215).toString(16));
-            resolve();
+            let votes = values[2].get("votes") || 0;
+            if(votes > 0){
+              this.images.push({"url": values[0], "name": image.name, "date":values[1].get("date"), "user": values[1].get("user")});
+              this.labels.push(image.name);
+              this.data.push(values[2].get("votes"));
+              this.colorArray.push('#'+Math.floor(Math.random()*16777215).toString(16));
+              resolve();
+            }
           })
         })
       }).catch(() => {
