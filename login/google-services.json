@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "804099428750",
+    "firebase_url": "https://practica-profesional-323a6.firebaseio.com",
+    "project_id": "practica-profesional-323a6",
+    "storage_bucket": "practica-profesional-323a6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:804099428750:android:bd412a94b1aa5fa84354df",
+        "android_client_info": {
+          "package_name": "com.nosorio.login"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "804099428750-5e1dvbr7atj963s8nmp3p77gi4paillq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPDJ5d0e5B43vL_lvWnZtHb-1Bj18uL4U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "804099428750-5e1dvbr7atj963s8nmp3p77gi4paillq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

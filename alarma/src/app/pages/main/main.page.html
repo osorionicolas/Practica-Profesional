@@ -1,0 +1,5 @@
+<ion-content>
+  <app-background></app-background>
+  <app-siren [isAlarmActivated]="isAlarmActivated"></app-siren>
+  <app-alarm (alarmActivatedEvent)="setAlarm($event)"></app-alarm>
+</ion-content>

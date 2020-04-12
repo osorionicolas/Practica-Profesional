@@ -1,0 +1,29 @@
+.login {
+    max-width: 280px;
+    min-height: 370px;
+    margin: 50px auto;
+    background-color: rgba(10,10,10,.68);
+    border-radius: 40px;
+}
+
+ion-item{
+    margin-bottom:30px;
+    border-radius: 10px;
+}
+
+.form{
+    padding: 35px;
+    text-align: center;
+}
+
+.customBtn{
+    margin-top:50px;
+}
+
+.defaultUsers{
+    text-align: center;
+}
+
+.error-message{
+    color:white;
+}
