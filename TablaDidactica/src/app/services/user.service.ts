@@ -1,14 +1,10 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { User } from '../classes/user';
-
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-
-  private user: User;
 
   constructor(private afsAuth: AngularFireAuth){
     
@@ -28,14 +24,6 @@ export class UserService {
     this.afsAuth.auth.signInWithEmailAndPassword(value.email, value.password)
      .then(
        res => {
-         console.log(res);
-          /*this.dataApi.TraerUno(userData.user.uid, 'usuarios').pipe(take(1)).subscribe(userx => {
-            this.user.Uid = userx.Uid;
-            this.user.Email = userx.Email;
-            this.user.ImagenUrl = userx.ImagenUrl;
-            this.user.Nombre = userx.Nombre;
-            this.user.Perfil = userx.Perfil;
-          });*/
         resolve(res)
        },
        err => reject(err))

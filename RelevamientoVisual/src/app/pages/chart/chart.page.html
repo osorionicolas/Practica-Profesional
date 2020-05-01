@@ -1,22 +1,17 @@
 <ion-content>
-  <ion-list-header color="primary"></ion-list-header>
-  <ion-card class="welcome-card">
-    <ion-card-header>
-      <ion-card-title>Cantidad de votos</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <canvas #pieChart (click)="showImage($event)"></canvas>
-    </ion-card-content>
-  </ion-card>
+    <ion-list-header color="primary"></ion-list-header>
+    <div class="chart">
+        <canvas #chart (click)="showImage($event)"></canvas>
+    </div>
 
-  <ion-card class="welcome-card" *ngIf="imageObject">
-    <ion-card-header>
-      <ion-card-title>
-        <span>Subida por: {{imageObject.user}} - Fecha: {{imageObject.date | date:'dd-MM-yyyy'}}</span>
-      </ion-card-title>
-      <ion-card-content>
-        <img src={{imageObject.url}}>
-      </ion-card-content>
-    </ion-card-header>
-  </ion-card>
+    <ion-card class="welcome-card" *ngIf="imageObject">
+        <ion-card-header>
+            <ion-card-title>
+                <span>Subida por: {{imageObject.user}} - Fecha: {{imageObject.date | date:'dd-MM-yyyy'}}</span>
+            </ion-card-title>
+            <ion-card-content>
+                <img src={{imageObject.url}}>
+            </ion-card-content>
+        </ion-card-header>
+    </ion-card>
 </ion-content>

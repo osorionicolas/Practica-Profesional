@@ -1,13 +1,8 @@
 <ion-content>
   <ion-list-header color="primary"></ion-list-header>
-  <ion-card class="welcome-card">
-    <ion-card-header>
-      <ion-card-title>Cantidad de votos</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <canvas #barChart (click)="showImage($event)"></canvas>
-    </ion-card-content>
-  </ion-card>
+  <div class="chart">
+    <canvas #chart (click)="showImage($event)"></canvas>
+  </div>
 
   <ion-card class="welcome-card" *ngIf="imageObject">
     <ion-card-header>

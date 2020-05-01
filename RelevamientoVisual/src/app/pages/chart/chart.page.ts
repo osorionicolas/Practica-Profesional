@@ -1,9 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
 import { Chart } from 'chart.js';
 import { CameraService } from 'src/app/services/camera.service';
-import { NavController, LoadingController } from '@ionic/angular';
+import { LoadingController } from '@ionic/angular';
 import { Global } from 'src/app/global';
-
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-chart',
@@ -11,79 +11,73 @@ import { Global } from 'src/app/global';
   styleUrls: ['./chart.page.scss'],
 })
 export class ChartPage {
-  
-  @ViewChild('pieChart',{"static":false}) pieChart;
+
+  @ViewChild('chart',{"static":false}) chart;
 
   bars: any;
-  colorArray: any;  
+  colors: Array<string>;  
   images: Array<object>;
   labels: Array<string>;
-  data: Array<string>;
+  data: Array<number>;
   imageObject: object;
 
   constructor(
     private cameraService:CameraService, 
-    private navCtrl: NavController, 
     private global: Global,
-    public loadingController: LoadingController
+    public loadingController: LoadingController,
+    private notificationService: NotificationService
   ) { }
 
   ionViewDidEnter() {
     this.getAllImages().then(() => {
-      this.createPieChart();
+      this.createChart();
     });
   }
 
-  createPieChart() {
-    this.bars = new Chart(this.pieChart.nativeElement, {
-      type: 'pie',
+  createChart() {
+    this.bars = new Chart(this.chart.nativeElement, {
+      type: "pie",
       data: {
         labels: this.labels,
         datasets: [{
           data: this.data,
-          backgroundColor: this.colorArray,
-          borderColor: this.colorArray,
-          borderWidth: 1
+          backgroundColor: this.colors,
+          borderColor: this.colors
         }]
       }
     });
   }
 
-
   getAllImages(){
-    this.presentLoading();
-    this.images = new Array<object>(); 
-    this.labels = new Array<string>(); 
-    this.data = new Array<string>(); 
-    this.colorArray = new Array<string>(); 
+    this.notificationService.presentLoading(2000, "Cargando gráfico");
+    this.initiateArrays();
     return new Promise((resolve) => {
       this.cameraService.getAllImages(this.global.type).then((images: firebase.storage.ListResult) => {
         images.items.forEach((image:firebase.storage.Reference) => {
-          Promise.all([image.getDownloadURL(),this.cameraService.getOnce("images", image.name), this.cameraService.getOnce("votes", image.name) ]).then(values => {
-            let votes = values[2].get("votes") || 0;
-            if(votes > 0){
-              this.images.push({"url": values[0], "name": image.name, "date":values[1].get("date"), "user": values[1].get("user")});
-              this.labels.push(image.name);
-              this.data.push(values[2].get("votes"));
-              this.colorArray.push('#'+Math.floor(Math.random()*16777215).toString(16));
-              resolve();
-            }
-          })
+          let imageName = image.name
+          Promise.all([image.getDownloadURL(), 
+            this.cameraService.getOnce("images", imageName), 
+            this.cameraService.getOnce("votes", imageName) 
+          ]).then(values => {
+              let votes = values[2].get("votes") || 0;
+              if(votes > 0){
+                this.images.push({"url": values[0], "name": imageName, "date":values[1].get("date"), "user": values[1].get("user")});
+                this.labels.push(imageName);
+                this.data.push(values[2].get("votes"));
+                this.colors.push('#'+Math.floor(Math.random()*16777215).toString(16));
+                setTimeout(function() { resolve() }, 1000);
+              }
+            })
         })
-      }).catch(() => {
-        this.navCtrl.navigateRoot("login");
       })
     })
   }
 
-  async presentLoading() {
-    const loading = await this.loadingController.create({
-      duration: 2000,
-      message: "Cargando gráfico"
-    });
-    await loading.present();
-
-    const { role, data } = await loading.onDidDismiss();
+  initiateArrays(){
+    this.images = []; 
+    this.labels = [];
+    this.data = [];
+    this.colors = [];
   }
 
   showImage(event){
@@ -93,4 +87,5 @@ export class ChartPage {
       this.imageObject = this.images.filter((data:any) => data.name == elementName)[0];
     }
   }
+
 }

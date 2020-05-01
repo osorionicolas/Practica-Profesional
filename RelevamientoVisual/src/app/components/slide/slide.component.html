@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title text-right><ion-icon name="refresh" (click)="refresh()" class="refresh"></ion-icon></ion-title>
+    <ion-title class="ion-text-right"><ion-icon name="refresh" (click)="getAllImages()" class="refresh"></ion-icon></ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -23,8 +23,8 @@
 </ion-slides>
 
 <div *ngIf="images?.length > 0">
-  <ion-icon float-left (click)="vote(0)"  class="thumb" name="thumbs-down"></ion-icon> 
-  <ion-icon float-right (click)="vote(1)" class="thumb" style="color:blue" name="thumbs-up"></ion-icon>
+  <ion-icon (click)="vote(0)"  class="thumb ion-float-left" name="thumbs-down"></ion-icon> 
+  <ion-icon (click)="vote(1)" class="thumb ion-float-right" style="color:blue" name="thumbs-up"></ion-icon>
 </div>
   
 <ion-item *ngIf="images?.length==0">

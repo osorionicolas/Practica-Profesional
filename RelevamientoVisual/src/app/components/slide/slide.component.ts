@@ -43,10 +43,6 @@ export class SlideComponent implements OnInit {
     this.getAllImages()
   }
 
-  refresh(){
-    this.getAllImages();
-  }
-
   getAllImages(){
     this.presentLoading();
     this.images = new Array<object>(); 
@@ -76,7 +72,7 @@ export class SlideComponent implements OnInit {
             this.cameraService.setDocument("votes",imageName,{"votes": votes + 1, "user": this.cameraService.getCurrentUser().uid});
           }
           this.presentToast("El voto ha sido registrado","success");
-          this.refresh();
+          this.getAllImages();
         }
         else{
           this.presentToast("Ya ha votado esta foto","warning");

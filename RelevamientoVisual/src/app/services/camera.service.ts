@@ -7,6 +7,7 @@ import { File } from "@ionic-native/file/ngx";
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Global } from '../global';
+import { NotificationService } from './notification.service';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,8 @@ export class CameraService {
     private toastController: ToastController,
     private afs: AngularFirestore,
     private afsAuth: AngularFireAuth,
-    private global: Global
+    private global: Global,
+    private notificationService: NotificationService
   ) { }
 
   async takePhoto(type:string){
@@ -35,7 +37,7 @@ export class CameraService {
       let cameraInfo = await this.camera.getPicture(options);
       let blobInfo:any = await this.makeFileIntoBlob(cameraInfo);
       await this.uploadToFirebase(blobInfo, type);
-      this.presentToast('Subida Realizada con Éxito', "success");
+      this.notificationService.presentToast('Subida Realizada con Éxito', "success");
       let currentUser = this.getCurrentUser().email.split('@')[0];
       this.setDocument("images", blobInfo.fileName, { "user" : currentUser, "date": Date.now() })
     } 
@@ -105,16 +107,6 @@ export class CameraService {
     return new Promise((resolve, reject) => {
       resolve(firebase.storage().ref("images").child(type).listAll());
     })
-  }
-
-  async presentToast(message, color) {
-    const toast = await this.toastController.create({
-      message: message,
-      duration: 2000,
-      position: "top",
-      color: color
-    });
-    toast.present();
   }
 
   setDocument(collection:string, id:string, object:object): void {

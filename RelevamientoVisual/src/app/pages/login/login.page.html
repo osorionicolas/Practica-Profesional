@@ -33,8 +33,8 @@
       </form>
       <div class="hr"></div>
       <ion-item>
-          <ion-label>Default Users</ion-label>
-          <ion-select okText="Okay" cancelText="Dismiss" [(ngModel)]="user" (ionChange)="setDefaultUser()">
+          <ion-label>Usuarios</ion-label>
+          <ion-select okText="Aceptar" cancelText="Cancelar" [(ngModel)]="user" (ionChange)="setDefaultUser()">
             <ion-select-option *ngFor="let user of defaultUsers" [value] = "user">{{user.email}}</ion-select-option>
           </ion-select>
         </ion-item>

@@ -165,7 +165,7 @@ export class AlarmComponent implements OnInit {
             return false;
           }
         }, {
-          text: 'Ok',
+          text: 'Aceptar',
           handler: (input) => {
             if(input.contraseña == password){
               alert.dismiss(true);

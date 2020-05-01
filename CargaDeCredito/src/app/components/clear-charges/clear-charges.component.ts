@@ -9,6 +9,8 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ClearChargesComponent implements OnInit {
 
+  private usersCollection: string = "usersData"
+
   constructor(
     private firebaseService: FirebaseService, 
     private userService: UserService
@@ -27,8 +29,8 @@ export class ClearChargesComponent implements OnInit {
         doc.ref.update({["enabled"]:"true"});
       });
     });
-    let objetoDoc = this.firebaseService.createDoc("usersData", currentUser.uid);
-    this.firebaseService.getOnce("usersData", currentUser.uid).subscribe(doc => {
+    let objetoDoc = this.firebaseService.createDoc(this.usersCollection, currentUser.uid);
+    this.firebaseService.getOnce(this.usersCollection, currentUser.uid).subscribe(doc => {
       if (!doc.exists) {
         return null;
       } else {

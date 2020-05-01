@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 import { SmartAudioService } from 'src/app/services/smart-audio.service';
 
@@ -7,7 +7,7 @@ import { SmartAudioService } from 'src/app/services/smart-audio.service';
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.scss'],
 })
-export class GameComponent implements OnInit {
+export class GameComponent {
 
   private orientation: string;
 
@@ -17,21 +17,13 @@ export class GameComponent implements OnInit {
 
   constructor(private screenOrientation: ScreenOrientation, private smartAudioService: SmartAudioService) {}
 
-  ngOnInit() {
+  ngOnChanges() {
     if(this.topic == "colores")
       this.array = Array<string>("verde","rojo","azul","amarillo","violeta");
     if(this.topic == "numeros")
       this.array = Array<string>("uno","dos","tres","cuatro","cinco");
     if(this.topic == "animales")
       this.array = Array<string>("gato","perro","vaca","mariposa","conejo");
-
-    console.log(this.screenOrientation.type);
-    this.screenOrientation.onChange().subscribe(
-      () => {
-        console.log("Orientation Changed " + this.screenOrientation.type);
-        this.orientation = this.screenOrientation.type;
-      }
-    );
   }
 
   play(value:string){

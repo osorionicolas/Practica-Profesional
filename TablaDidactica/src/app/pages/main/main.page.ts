@@ -40,15 +40,32 @@ export class MainPage implements OnInit {
   changeLanguage(){
     switch(this.language){
       case "ingles": {
-        this.language = "espanol";
+        this.setOption("espanol", "idiomas");
         break;
       }
       case "espanol": {
-        this.language = "portugues";
+        this.setOption("portugues", "idiomas");
         break;
       }
       case "portugues": {
-        this.language = "ingles";
+        this.setOption("ingles", "idiomas");
+        break;
+      }
+    }
+  }
+
+  changeTopic(){
+    switch(this.topic){
+      case "animales": {
+        this.setOption("colores", "temas")
+        break;
+      }
+      case "colores": {
+        this.setOption("numeros", "temas")
+        break;
+      }
+      case "numeros": {
+        this.setOption("animales", "temas")
         break;
       }
     }

@@ -13,6 +13,8 @@ import { UserService } from 'src/app/services/user.service';
 export class ScanButtonComponent implements OnInit {
 
   private device: string = "mobile";
+  private chargesCollection: string = "usedCharges"
+  private usersCollection: string = "usersData"
 
   constructor(
     private firebaseService: FirebaseService, 
@@ -38,17 +40,17 @@ export class ScanButtonComponent implements OnInit {
     }
   }
 
-  getByIdAndUpdateCredit(id: string, dataNombre: string) {
+  getByIdAndUpdateCredit(barcodeId: string, dataNombre: string) {
     let currentUser = this.userService.getCurrentUser();
-    this.firebaseService.getOnce(dataNombre, id).subscribe(async doc => {
-      let validation = await this.validate(currentUser, doc);
+    this.firebaseService.getOnce(dataNombre, barcodeId).subscribe(async doc => {
+      let validation = await this.validate(currentUser, doc, barcodeId);
       if (validation) {
-        this.firebaseService.getOnce("usersData", currentUser.uid).toPromise().then(data =>{
+        this.firebaseService.getOnce(this.usersCollection, currentUser.uid).toPromise().then(data =>{
           let actualCredit = data.get("credit") || 0
           let credit = actualCredit + doc.data().value;
-          this.firebaseService.update(dataNombre, id, {"enabled":"false"});
-          this.firebaseService.add("usedCharges", {"date":Date.now(),"user":currentUser.uid, "id":id});
-          this.firebaseService.setDocument("usersData", currentUser.uid, "credit", credit);
+          this.firebaseService.update(dataNombre, barcodeId, {"enabled":"false"});
+          this.firebaseService.add(this.chargesCollection, {"date":Date.now(),"user":currentUser.uid, "id":barcodeId});
+          this.firebaseService.setDocument(this.usersCollection, currentUser.uid, "credit", credit);
           this.presentToast('Carga Realizada con Exito', "success");
         })
       } else {
@@ -56,28 +58,10 @@ export class ScanButtonComponent implements OnInit {
       }
     })
   }
-
-  async presentToast(message, color) {
-    const toast = await this.toastController.create({
-      message: message,
-      duration: 2000,
-      position: "middle",
-      color: color
-    });
-    toast.present();
-  }
-
-  countCharges(uId){
-    return new Promise<any>((resolve) => {
-      this.firebaseService.getAll('usedCharges', ref => ref.where("user", "==", uId)).subscribe((docs: Array<any>) => {
-        resolve(docs.length);
-      })
-    })
-  }
-
-  validate(currentUser, doc){
+  
+  validate(currentUser, doc, barcodeId){
     let currentUserProfilePromise = this.storage.get('profile');
-    let chargesCountPromise = this.countCharges(currentUser.uid);
+    let chargesCountPromise = this.countCharges(currentUser.uid, barcodeId);
 
     let validationResult = Promise.all([currentUserProfilePromise, chargesCountPromise]).then(values => {
       let result = false;
@@ -90,4 +74,22 @@ export class ScanButtonComponent implements OnInit {
     return validationResult;
   }
 
+  countCharges(uId, barcodeId){
+    return new Promise<any>((resolve) => {
+      this.firebaseService.getAll(this.chargesCollection, ref => ref.where("user", "==", uId).where("id", "==", barcodeId)).subscribe((docs: Array<any>) => {
+        resolve(docs.length);
+      })
+    })
+  }
+
+  
+  async presentToast(message, color) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 2000,
+      position: "middle",
+      color: color
+    });
+    toast.present();
+  }
 }

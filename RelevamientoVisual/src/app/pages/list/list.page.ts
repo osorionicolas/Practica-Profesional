@@ -28,10 +28,6 @@ export class ListPage implements OnInit {
     this.getAllImages();
   }
 
-  refresh(){
-    this.getAllImages();
-  }
-
   getAllImages(){
     this.presentLoading();
     this.images = new Array<object>()
