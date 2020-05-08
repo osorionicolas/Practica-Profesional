@@ -18,7 +18,7 @@
     <form class="login__form" [formGroup]="validations_form" (ngSubmit)="loginUser(validations_form.value)">
       <div class="login__row">
         <svg class="login__icon name svg-icon" viewBox="0 0 20 20"><path d="M0,20 a10,8 0 0,1 20,0z M10,0 a4,4 0 0,1 0,8 a4,4 0 0,1 0,-8" /></svg>
-        <ion-input type="text" class="login__input name" placeholder="Email" formControlName="email" required></ion-input>
+        <ion-input type="text" class="login__input name" placeholder="Correo Electrónico" formControlName="email" required></ion-input>
         <div class="validation-errors">
           <ng-container *ngFor="let validation of validation_messages.email">
             <div class="error-message" *ngIf="validations_form.get('email').hasError(validation.type) && (validations_form.get('email').dirty || validations_form.get('email').touched)">

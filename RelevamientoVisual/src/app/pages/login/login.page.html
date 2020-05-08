@@ -4,7 +4,7 @@
       <span class="tab">Iniciar Sesión</span>
       <form class="form" [formGroup]="validations_form" (ngSubmit)="loginUser(validations_form.value)">
         <div class="group">
-          <ion-label for="user" class="label">Email</ion-label>
+          <ion-label for="user" class="label">Correo Electrónico</ion-label>
           <input type="text" class="input" formControlName="email" required>
         </div>
         <div class="validation-errors">
