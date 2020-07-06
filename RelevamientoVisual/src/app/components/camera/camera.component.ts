@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CameraService } from 'src/app/services/camera.service';
 import { Global } from 'src/app/global';
 
