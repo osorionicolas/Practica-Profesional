@@ -1,0 +1,15 @@
+<ion-content>
+  <canvas id="connection-canvas" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0"></canvas>
+  <ion-row *ngFor="let animal of animalImgs; index as i" class="padding-answer-line">
+      <ion-col class="answer-container" (click)="selectAnswer($event.target, i+1, 1, img)">
+        <img class="getParent" src="../../../assets/imagenes/animales/{{animal}}.svg">
+        <div class="round-pointer round-pointer-right"></div>
+      </ion-col>
+      <ion-col></ion-col>
+      <ion-col class="answer-container" (click)="selectAnswer($event.target, i+1, 2, animalNames[i])">
+          {{animalNames[i]}}
+          <div class="round-pointer round-pointer-left"></div>
+      </ion-col>
+  </ion-row>
+  <ion-button (click)="clearCanvas()">Limpiar</ion-button>
+</ion-content>

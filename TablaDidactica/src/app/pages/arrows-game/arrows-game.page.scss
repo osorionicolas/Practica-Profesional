@@ -1,0 +1,50 @@
+.padding-answer-line {
+    padding-bottom:8px;
+}
+
+.answer-container {
+    height:13vh;
+    background-color:#ccc;
+    border:1px solid #ccc;
+    margin:2px;
+    float:left;
+    text-align:center;
+    padding-top:8px;
+    cursor:pointer;
+    position:relative;
+    line-height: 11vh;
+}
+
+.answer-container:hover, .answer-container:focus, .answer-container:active {
+    background-color: #0076e9;
+    color: white;
+    border: 1px solid #0076e9;
+}
+
+
+.round-pointer {
+    position: absolute;
+    background-color:#ccc;
+    width:10px;
+    height:10px;
+    border-radius: 50%;
+    top:6vh;
+}
+
+.round-pointer-right {
+    right:0px;
+    margin-right:-20px;
+}
+
+.round-pointer-left {
+    left:0px;
+    margin-left:-20px;
+}
+
+.selected {
+    background-color: blue;
+}
+
+img{
+    height: 11vh;
+}

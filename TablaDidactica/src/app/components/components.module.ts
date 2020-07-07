@@ -1,4 +1,4 @@
-import { NgModule } from '@Angular/core';
+import { NgModule } from '@angular/core';
 import { BackgroundComponent } from './background/background.component';
 
 @NgModule({

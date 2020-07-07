@@ -24,7 +24,7 @@ app-game{
 .back{
     margin: 12px;
     font-size: 42px;
-    position: absolute;
+    position: relative;
     z-index: 200;
     color: rgba(255,255,255,1);
     background-color: rgba(219,87,5,1);
@@ -40,13 +40,17 @@ app-game{
 }
 
 .flag{
-    position: absolute;
+    position: relative;
     z-index: 200;
     width: 125px;
-    height: 80px;
+    height: 75px;
 }
 
+#flag-container{
+    position: absolute;
+    right: 0;
+}
 
-.flag-container{
-    width: 70%;
+#arrow-container{
+    position: absolute;
 }

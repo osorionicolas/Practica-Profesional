@@ -14,7 +14,7 @@ import { SmartAudioService } from './services/smart-audio.service';
 })
 export class AppComponent {
   
-  showSplash: Boolean = true;
+  showSplash: Boolean = false;
 
   constructor(
     private platform: Platform,

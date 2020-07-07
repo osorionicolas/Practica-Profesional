@@ -1,13 +1,15 @@
 <ion-content fullscreen>
-  <div>
-    <button *ngIf="language" class="back"><ion-icon (click)="return()" name="arrow-back"></ion-icon></button>
-    <div *ngIf="language != '' && languageBool" class="flag-container ion-text-center" (click)="changeLanguage()">
-      <img class="flag"src="../../../assets/idiomas/{{language}}.svg">
-    </div>
-    <div *ngIf="topic != '' && topicBool" class="flag-container ion-text-right" (click)="changeTopic()">
-      <img class="flag"src="../../../assets/temas/{{topic}}.svg">
-    </div>
-  </div>
+  <header>
+    <nav id="arrow-container">
+      <button *ngIf="language" class="back" (click)="return()" ><ion-icon name="arrow-back"></ion-icon></button>
+      <button *ngIf="language" class="back" routerLink="/arrows" ><ion-icon name="arrow-forward"></ion-icon></button>
+    </nav>
+
+    <nav id="flag-container">
+      <img *ngIf="language != '' && languageBool" class="flag"src="../../../assets/idiomas/{{language}}.svg" (click)="changeLanguage()">
+      <img *ngIf="topic != '' && topicBool" class="flag"src="../../../assets/temas/{{topic}}.svg" (click)="changeTopic()">
+    </nav>
+  </header>
   <app-background></app-background>
   <app-topic *ngIf="!languageBool && !topicBool" (selected)="setOption($event, 'idiomas')" [category]="'idiomas'"></app-topic>
   <app-topic *ngIf="languageBool && !topicBool" (selected)="setOption($event, 'temas')" [category]="'temas'"></app-topic>
